@@ -1,0 +1,139 @@
+﻿<mvvm:AppView x:Class="DeviceExplorer.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeviceExplorer"
+        xmlns:mvvm="clr-namespace:DeviceExplorer.Mvvm"
+        xmlns:vm="clr-namespace:DeviceExplorer.ViewModel"
+        xmlns:dev="clr-namespace:Devices;assembly=Devices"
+        xmlns:ctr="clr-namespace:DeviceExplorer.Controls"
+        xmlns:conv="clr-namespace:DeviceExplorer.Converter"
+        mc:Ignorable="d"
+        Height="800" Width="1400" Icon="/DeviceExplorer;component/cellphone.ico">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <conv:RadioButtonConverter x:Key="RadioButtonConverter"/>
+        <LongToKBStringConverter x:Key="LongToKBStringConverter"/>
+        <LongToMBStringConverter x:Key="LongToMBStringConverter"/>
+        <ContextMenu x:Key="folderContextMenu">
+            <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
+            <Separator/>
+            <MenuItem Header="New Folder" Command="{Binding NewFolderCommand}" />
+            <MenuItem Header="New Link" Command="{Binding NewLinkCommand}" />
+            <Separator/>
+            <MenuItem Header="Properties" Command="{Binding PropertiesCommand}" />
+        </ContextMenu>
+        <ContextMenu x:Key="fileContextMenu">
+            <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
+            <Separator/>
+            <MenuItem Header="Properties" Command="{Binding PropertiesCommand}" />
+        </ContextMenu>
+        <ContextMenu x:Key="listContextMenu">
+            <MenuItem Header="New Folder" Command="{Binding SelectedItem.NewFolderCommand}" />
+            <MenuItem Header="New Link" Command="{Binding SelectedItem.NewLinkCommand}" />
+            <Separator/>
+            <MenuItem Header="Properties" Command="{Binding SelectedItem.PropertiesCommand}" />
+        </ContextMenu>
+    </Window.Resources>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar >
+                <RadioButton IsChecked="{Binding DeviceType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static dev:DeviceType.Windows}}"  ToolTip="Windows" >
+                    <Image Source="/DeviceExplorer;component/Images/Windows.png" Width="16" Height="16"/>
+                </RadioButton>
+                <RadioButton IsChecked="{Binding DeviceType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static dev:DeviceType.ADB}}"  ToolTip="Android Debug Bridge" >
+                    <Image Source="/DeviceExplorer;component/Images/Android.png" Width="16" Height="16"/>
+                </RadioButton>
+                <RadioButton IsChecked="{Binding DeviceType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static dev:DeviceType.MTP}}" ToolTip="Media Transport Protocol" >
+                    <Image Source="/DeviceExplorer;component/Images/MTP.png" Width="16" Height="16"/>
+                </RadioButton>
+                <RadioButton IsChecked="{Binding DeviceType, Converter={StaticResource RadioButtonConverter}, ConverterParameter={x:Static dev:DeviceType.Terminal}}" ToolTip="Terminal" >
+                    <Image Source="/DeviceExplorer;component/Images/Terminal.png" Width="16" Height="16"/>
+                </RadioButton>
+                <ComboBox ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" Width="240" ToolTip="Select Device" />
+                <Separator/>
+                <Button Command="{Binding RefreshCommand}" ToolTip="Refresh" >
+                    <Image Source="/DeviceExplorer;component/Images/Refresh.png" Width="16" Height="16"/>
+                </Button>
+                <Button Command="{Binding ShellCommand}" ToolTip="ADB Shell" >
+                    <Image Source="/DeviceExplorer;component/Images/Shell.png" Width="16" Height="16"/>
+                </Button>
+                <Button Command="{Binding DeviceInfoCommand}" ToolTip="Device Info" >
+                    <Image Source="/DeviceExplorer;component/Images/Properties.png" Width="16" Height="16"/>
+                </Button>
+                <Separator/>
+                <ToggleButton IsChecked="{Binding IsChartsVisible}" ToolTip="Show memory Graph" >
+                    <Image Source="/DeviceExplorer;component/Images/Graph.png" Width="16" Height="16"/>
+                </ToggleButton>
+                <Button Command="{Binding CheckCompanionCommand}" ToolTip="Check installed Companion app" >
+                    <Image Source="/DeviceExplorer;component/Images/Check.png" Width="16" Height="16"/>
+
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="16"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0" Content="{Binding SelectedFolder.Path}"/>
+            <StatusBarItem Grid.Column="1" Content="{Binding SelectedFolder.FilesCount}" ContentStringFormat=" {0:D} items "/>
+        </StatusBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <!--<RowDefinition Height="6" />
+                <RowDefinition Height="200" />-->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--<ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" ToolTip="Select Device" Margin="3,3,0,3" />-->
+            <TextBox Grid.Row="0" Text="{Binding SelectedFolder.FullName, Mode=OneWay}" IsReadOnly="True" Margin="3" ToolTip="Current Path"/>
+            <Explorer Grid.Row="1" ItemsSource="{Binding RootFolders}" SelectedValue="{Binding SelectedFolder}" Margin="3,0,3,0"
+                FolderContextMenu="{StaticResource folderContextMenu}"
+                FileContextMenu="{StaticResource fileContextMenu}"
+                ListContextMenu="{StaticResource listContextMenu}">
+            </Explorer>
+            <!--<HideableGridSplitter Grid.Row="2" Hide="{Binding IsChartsVisible, Converter={StaticResource BooleanNotConverter}}" HorizontalAlignment="Stretch" ResizeDirection="Rows" Cursor="SizeNS" Background="Transparent"/>
+            <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="System" VerticalAlignment="Center"/>
+            <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" Margin="3,0,3,3" BorderThickness="1">
+                <ctr:Chart  Values="{Binding MemoryValues}" Foreground="Red"/>
+            </Border>
+            <Label Grid.Row="1" Grid.Column="0" Content="Native" VerticalAlignment="Center"/>
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" Margin="3,0,3,3" BorderThickness="1">
+                <ctr:Chart Values="{Binding NativeValues}" Foreground="DarkGreen"/>
+            </Border>
+                <Label Grid.Row="2" Grid.Column="0" Content="Dalvik" VerticalAlignment="Center"/>
+                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" Margin="3,0,3,3" BorderThickness="1">
+                    <ctr:Chart  Values="{Binding DalvikValues}" Foreground="Blue"/>
+                </Border>
+            </Grid>-->
+        </Grid>
+    </DockPanel>
+</mvvm:AppView>
