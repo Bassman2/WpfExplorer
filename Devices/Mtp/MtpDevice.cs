@@ -142,7 +142,7 @@ namespace Devices.Mtp
             deviceInfo.Add("DeviceId", this.device.DeviceId);
             deviceInfo.Add("DeviceType", this.device.DeviceType.ToString());
             deviceInfo.Add("FirmwareVersion", this.device.FirmwareVersion);
-            deviceInfo.Add("Manufacture", this.device.Manufacture);
+            //deviceInfo.Add("Manufacture", this.device.Manufacture);
             deviceInfo.Add("Model", this.device.Model);
             deviceInfo.Add("PnPDeviceID", this.device.PnPDeviceID);
             deviceInfo.Add("PowerLevel", this.device.PowerLevel.ToString());

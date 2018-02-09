@@ -1,32 +1,14 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.ComponentModel;
 using System.Windows.Threading;
-using System.Xml.Serialization;
 
 namespace DeviceExplorer.Mvvm
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged, IDataErrorInfo
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public BaseViewModel()
         { }
-
-        #region Update
-
-        /// <summary>
-        /// Should be overwritten in derived classes to update the values;
-        /// </summary>
-        /// <returns>true if one ore more values are changed, else false</returns>
-        public virtual bool OnUpdate()
-        {
-            return true;
-        }
-               
-        #endregion
-               
+       
         #region INotifyPropertyChanged
         
         public event PropertyChangedEventHandler PropertyChanged;
@@ -63,26 +45,6 @@ namespace DeviceExplorer.Mvvm
             else
             {
                 Dispatcher.CurrentDispatcher.Invoke(DispatcherPriority.DataBind, new NotifyPropertyChangedDeleagte(NotifyPropertyChanged), null);
-            }
-        }
-
-        #endregion
-
-        #region IDataErrorInfo
-
-        public virtual string Error
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
-
-        public virtual string this[string columnName]
-        {
-            get
-            {
-                return string.Empty;
             }
         }
 

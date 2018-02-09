@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Devices</RootNamespace>
     <AssemblyName>Devices</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,13 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MediaDevices, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MediaDevices.1.3.0\lib\net45\MediaDevices.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MediaDevices, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaDevices.1.5.0\lib\net45\MediaDevices.dll</HintPath>
     </Reference>
     <Reference Include="SharpAdbClient, Version=2.1.0.0, Culture=neutral, PublicKeyToken=d728076f5d82a2e8, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpAdbClient.2.1.0-beta338\lib\net45\SharpAdbClient.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\SharpAdbClient.2.1.0\lib\net451\SharpAdbClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,6 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MediaDevicesLicense.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Explorer\Explorer.csproj">
+      <Project>{03fb5d97-71e4-4304-b52f-6836605398b5}</Project>
+      <Name>Explorer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

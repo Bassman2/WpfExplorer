@@ -19,7 +19,10 @@ using System.Windows.Threading;
 
 namespace ExplorerCtrl
 {
-    public class Explorer : Control
+    /// <summary>
+    /// Explorer control class
+    /// </summary>
+    public sealed class Explorer : Control
     {
         static Explorer()
         {
@@ -32,6 +35,9 @@ namespace ExplorerCtrl
         private ProgresshWindow dlg;
 
 
+        /// <summary>
+        /// Invoked whenever application code or internal processes call System.Windows.FrameworkElement.ApplyTemplate.
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -55,9 +61,16 @@ namespace ExplorerCtrl
 
         #region public Dependency Properties
         
+        /// <summary>
+        /// Dependency property for ItemsSource
+        /// </summary>
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(IEnumerable<IExplorerItem>), typeof(Explorer), new FrameworkPropertyMetadata(null, OnItemsSourceChanged));
 
+
+        /// <summary>
+        /// Get and set the items
+        /// </summary>
         public IEnumerable<IExplorerItem> ItemsSource
         {
             get { return (IEnumerable<IExplorerItem>)GetValue(ItemsSourceProperty); }
@@ -132,56 +145,91 @@ namespace ExplorerCtrl
         }
 
 
-
+        /// <summary>
+        /// Dependency property for SelectedItem
+        /// </summary>
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(ExplorerItem), typeof(Explorer), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
 
+        /// <summary>
+        /// Get and set the selected item.
+        /// </summary>
         internal ExplorerItem SelectedItem
         {
             get { return (ExplorerItem)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for SelectedValue
+        /// </summary>
         public static readonly DependencyProperty SelectedValueProperty =
             DependencyProperty.Register("SelectedValue", typeof(IExplorerItem), typeof(Explorer), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        /// <summary>
+        /// Get and set the value of the selected item.
+        /// </summary>
         public IExplorerItem SelectedValue
         {
             get { return (IExplorerItem)GetValue(SelectedValueProperty); }
             set { SetValue(SelectedValueProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for SelectedItems
+        /// </summary>
         public static readonly DependencyProperty SelectedItemsProperty =
             DependencyProperty.Register("SelectedItems", typeof(IList), typeof(Explorer), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        /// <summary>
+        /// Get and set all selected items.
+        /// </summary>
         public object SelectedItems
         {
             get { return GetValue(SelectedItemsProperty); }
             set { SetValue(SelectedItemsProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for FolderContextMenu
+        /// </summary>
         public static readonly DependencyProperty FolderContextMenuProperty =
             DependencyProperty.Register("FolderContextMenu", typeof(ContextMenu), typeof(Explorer), new FrameworkPropertyMetadata(null));
 
+        /// <summary>
+        /// Set the folder context menu.
+        /// </summary>
         public ContextMenu FolderContextMenu
         {
             get { return (ContextMenu)GetValue(FolderContextMenuProperty); }
             set { SetValue(FolderContextMenuProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for FileContextMenu
+        /// </summary>
         public static readonly DependencyProperty FileContextMenuProperty =
             DependencyProperty.Register("FileContextMenu", typeof(ContextMenu), typeof(Explorer), new FrameworkPropertyMetadata(null));
 
+        /// <summary>
+        /// Set the filer context menu.
+        /// </summary>
         public ContextMenu FileContextMenu
         {
             get { return (ContextMenu)GetValue(FileContextMenuProperty); }
             set { SetValue(FileContextMenuProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for ListContextMenu
+        /// </summary>
         public static readonly DependencyProperty ListContextMenuProperty =
            DependencyProperty.Register("ListContextMenu", typeof(ContextMenu), typeof(Explorer), new FrameworkPropertyMetadata(null));
 
+        /// <summary>
+        /// Set the list context menu.
+        /// </summary>
         public ContextMenu ListContextMenu
         {
             get { return (ContextMenu)GetValue(ListContextMenuProperty); }
@@ -534,7 +582,7 @@ namespace ExplorerCtrl
             return (T)dep;
         }
 
-        protected static void InvokeIfNeeded(Action callback)
+        private static void InvokeIfNeeded(Action callback)
         {
             if (Application.Current == null || Application.Current.Dispatcher.CheckAccess())
             {
@@ -546,12 +594,12 @@ namespace ExplorerCtrl
             }
         }
 
-        protected static void Invoke(Action callback)
+        private static void Invoke(Action callback)
         {
             Application.Current.Dispatcher.Invoke(callback);
         }
 
-        protected static void MTAInvoke(Action callback)
+        private static void MTAInvoke(Action callback)
         {
             Thread thread = new Thread(() =>
             {
@@ -561,9 +609,8 @@ namespace ExplorerCtrl
             thread.Start();
             //thread.Join();
         }
-
-
-        public static string GetRelPath(string path, string rootPath)
+        
+        private static string GetRelPath(string path, string rootPath)
         {
             if (!path.ToLower().StartsWith(rootPath.ToLower()))
             {

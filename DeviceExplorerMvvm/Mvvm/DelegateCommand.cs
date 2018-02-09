@@ -13,7 +13,6 @@ namespace DeviceExplorer.Mvvm
     {
         private readonly Action execute = null;
         private readonly Func<bool> canExecute = null;
-        //private List<WeakReference> canExecuteChangedHandlers;
                
         /// <summary>
         /// Constructor
@@ -44,24 +43,7 @@ namespace DeviceExplorer.Mvvm
         {
             this.execute();
         }
-
-        /// <summary>
-        ///     Raises the CanExecuteChaged event
-        /// </summary>
-        public void RaiseCanExecuteChanged()
-        {
-            CommandManager.InvalidateRequerySuggested();
-        }
-
-        /// <summary>
-        ///     Protected virtual method to raise CanExecuteChanged event
-        /// </summary>
-        //protected virtual void OnCanExecuteChanged()
-        //{
-        //    CommandManagerHelper.CallWeakReferenceHandlers(this.canExecuteChangedHandlers);
-        //}
-               
-
+        
         /// <summary>
         /// ICommand.CanExecuteChanged implementation
         /// </summary>
@@ -70,12 +52,10 @@ namespace DeviceExplorer.Mvvm
             add
             {
                 CommandManager.RequerySuggested += value;
-                //CommandManagerHelper.AddWeakReferenceHandler(ref this.canExecuteChangedHandlers, value, 2);
             }
             remove
             {
                 CommandManager.RequerySuggested -= value;
-                //CommandManagerHelper.RemoveWeakReferenceHandler(this.canExecuteChangedHandlers, value);
             }
         }
     }

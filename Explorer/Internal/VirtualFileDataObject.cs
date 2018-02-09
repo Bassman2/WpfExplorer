@@ -83,6 +83,7 @@ namespace ExplorerCtrl.Internal
         /// </summary>
         /// <param name="startAction">Optional action to run at the start of the data transfer.</param>
         /// <param name="endAction">Optional action to run at the end of the data transfer.</param>
+        /// <param name="streamContents"></param>
         public VirtualFileDataObject(Action<VirtualFileDataObject> startAction, Action<VirtualFileDataObject> endAction, Action<Stream, FileDescriptor> streamContents)
             : this()
         {
@@ -355,6 +356,7 @@ namespace ExplorerCtrl.Internal
         /// </summary>
         /// <param name="dataFormat">Data format.</param>
         /// <param name="index">Index of data.</param>
+        /// <param name="fileDescriptor"></param>
         /// <param name="streamData">Action generating the data.</param>
         /// <remarks>
         /// Uses Stream instead of IEnumerable(T) because Stream is more likely

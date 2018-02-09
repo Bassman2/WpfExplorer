@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace ExplorerCtrl.Internal
 {
-    public class Dummy : IExplorerItem
+    internal class Dummy : IExplorerItem
     {
         public event EventHandler<RefreshEventArgs> Refresh;
 

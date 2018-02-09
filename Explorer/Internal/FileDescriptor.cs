@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExplorerCtrl.Internal
 {
@@ -11,7 +7,7 @@ namespace ExplorerCtrl.Internal
     /// Class representing a virtual file for use by drag/drop or the clipboard.
     /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible", Justification = "Deliberate to provide obvious coupling.")]
-    public class FileDescriptor
+    internal class FileDescriptor
     {
         /// <summary>
         /// Gets or sets the name of the file.

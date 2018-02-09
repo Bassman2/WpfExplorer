@@ -57,20 +57,20 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfUsbMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfUsbMonitor.1.0.0\lib\net45\WpfUsbMonitor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\Chart.cs" />
     <Compile Include="Converter\DebugConverter.cs" />
     <Compile Include="Converter\RadioButtonConverter.cs" />
     <Compile Include="DeviceIcons.cs" />
     <Compile Include="Misc\MemoryData.cs" />
     <Compile Include="Misc\ObservableCollectionExtensions.cs" />
-    <Compile Include="Mvvm\AppView.cs" />
-    <Compile Include="Mvvm\AppViewModel.cs" />
     <Compile Include="Mvvm\BaseViewModel.cs" />
     <Compile Include="Mvvm\DelegateCommand.cs" />
     <Compile Include="Mvvm\DialogButtonsView.xaml.cs">
@@ -80,7 +80,6 @@
     <Compile Include="Mvvm\DialogViewModel.cs" />
     <Compile Include="Mvvm\EventToCommand.cs" />
     <Compile Include="Mvvm\GenericDelegateCommand.cs" />
-    <Compile Include="UsbMonitor.cs" />
     <Compile Include="ViewModel\CheckCompanionViewModel.cs" />
     <Compile Include="ViewModel\CreateFolderViewModel.cs" />
     <Compile Include="ViewModel\CreateLinkViewModel.cs" />
@@ -206,6 +205,9 @@
     <Resource Include="Images\Refresh.png" />
     <Resource Include="Images\Shell.png" />
     <Resource Include="Images\Studio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
