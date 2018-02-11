@@ -1,4 +1,5 @@
 ﻿using Devices.Internal;
+using ExplorerCtrl;
 using SharpAdbClient;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
 
 namespace Devices.Adb
 {
@@ -34,11 +36,19 @@ namespace Devices.Adb
             }
         }
 
+        #region IExplorerItem
+
+        public event EventHandler<RefreshEventArgs> Refresh;
+
         public string Name
         {
             get
             {
                 return this.fileStatistics.Path == "/" ? "/" : this.fileStatistics.Path;
+            }
+            set
+            {
+
             }
         }
 
@@ -58,25 +68,7 @@ namespace Devices.Adb
             }
         }
 
-        public EntryType Type
-        {
-            get
-            {
-                if (this.fileStatistics.FileMode.HasFlag(UnixFileMode.Directory))
-                {
-                    return EntryType.Directory;
-                }
-                else if (this.fileStatistics.FileMode.HasFlag(UnixFileMode.SymbolicLink))
-                {
-                    return EntryType.Link;
-                }
-                else
-                {
-                    return EntryType.File;
-                }
-            }
-        }
-
+        
         public long Size
         {
             get
@@ -93,6 +85,27 @@ namespace Devices.Adb
             }
         }
 
+        public ExplorerItemType Type
+        {
+            get
+            {
+                if (this.fileStatistics.FileMode.HasFlag(UnixFileMode.Directory))
+                {
+                    return ExplorerItemType.Directory;
+                }
+                else if (this.fileStatistics.FileMode.HasFlag(UnixFileMode.SymbolicLink))
+                {
+                    return ExplorerItemType.Link;
+                }
+                else
+                {
+                    return ExplorerItemType.File;
+                }
+            }
+        }
+
+        public ImageSource Icon { get; }
+
         public bool IsDirectory
         {
             get
@@ -101,35 +114,37 @@ namespace Devices.Adb
             }
         }
 
-        
 
-        public IDevice Device
+        public bool HasChildren { get; }
+
+
+        //public IEnumerable<IEntry> Folders
+        //{
+        //    using (SyncService service = new SyncService(this.device.deviceData))
+        //    {
+        //        return service.GetDirectoryListing(path).Where(f => f.Path != "." && f.Path != "..").Select(f => new AdbEntry(this.device, f, path)).Where(e => e.IsDirectory);
+        //    }
+        //}
+
+        public IEnumerable<IExplorerItem> Children
         {
             get
             {
-                return (IDevice)this.device;
+
+                using (SyncService service = new SyncService(this.device.deviceData))
+                {
+                    return service.GetDirectoryListing(path).OrderBy(f => f.Path).Select(f => new AdbEntry(this.device, f, path));
+                }
             }
         }
+              
 
-        public IEnumerable<IEntry> GetFolders()
+        public void Push(Stream stream, string path)
+        { }
+
+        public void Pull(string path, Stream stream)
         {
-            using (SyncService service = new SyncService(this.device.deviceData))
-            {
-                return service.GetDirectoryListing(path).Where(f => f.Path != "." && f.Path != "..").Select(f => new AdbEntry(this.device, f, path)).Where(e => e.IsDirectory);
-            }
         }
-
-        public IEnumerable<IEntry> GetEntries()
-        {
-
-            using (SyncService service = new SyncService(this.device.deviceData))
-            {
-                return service.GetDirectoryListing(path).OrderBy(f => f.Path).Select(f => new AdbEntry(this.device, f, path));
-            }
-        }
-
-        //bool FolderExist(string path)
-        //{ }
 
         public void CreateFolder(string folderName)
         {
@@ -137,26 +152,25 @@ namespace Devices.Adb
             this.device.ExcecuteCommand($"mkdir -p \"{path}\"");
         }
 
-        public void CreateLink(string folderName, string linkpath)
+        #endregion
+
+        #region IEntry
+
+        public bool CanDelete { get { return true; } }
+        public bool CanCreateFolder { get { return this.IsDirectory; } }
+        public bool CanCreateLink { get { return this.IsDirectory; ; } }
+
+        public void CreateLink(string linkName, string linkPath)
         {
-            string path = UnixPath.Combine(this.FullName, folderName);
-            this.device.ExcecuteCommand($"ln -s {linkpath} {path}");
+            string path = UnixPath.Combine(linkName, linkPath);
+            this.device.ExcecuteCommand($"ln -s {linkPath} {path}");
         }
-        
+
         public void Delete()
         {
             this.device.ExcecuteCommand($"rm -r {this.FullName}");
         }
 
-        public void Pull(string path, Stream stream)
-        {
-        }
-
-        public void Push(Stream stream, string path)
-        { }
-
-        public bool CanDelete { get { return true; } }
-        public bool CanCreateFolder { get { return this.IsDirectory; } }
-        public bool CanCreateLink { get { return this.IsDirectory; } }
+        #endregion
     }
 }

@@ -1,37 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using ExplorerCtrl;
 
 namespace Devices
 {
-    public interface IEntry
+    public interface IEntry : IExplorerItem
     {
-        string Name { get; }
-        string FullName { get; }
-        string Link { get; }
-        EntryType Type { get; }
-        long Size { get; }
-        DateTime? Date { get; }
-        bool IsDirectory { get; }
-        IDevice Device { get; }
-
-        IEnumerable<IEntry> GetFolders();
-
-        IEnumerable<IEntry> GetEntries();
-
-        void CreateFolder(string folderName);
-
-        void CreateLink(string linkName, string linkPath);
-
-        void Delete();
-
-        void Pull(string path, Stream stream);
-
-        void Push(Stream stream, string path);
-        
-        bool CanDelete { get; }
+        /// <summary>
+        /// Enable create folder in property menu if true
+        /// </summary>
         bool CanCreateFolder { get; }
+
+        /// <summary>
+        /// Enable create link in property menu if true
+        /// </summary>
         bool CanCreateLink { get; }
 
+        /// <summary>
+        /// Enable delete in property menu if true
+        /// </summary>
+        bool CanDelete { get; }
+        
+        /// <summary>
+        /// Create a new link
+        /// </summary>
+        /// <param name="linkName">Name of the link</param>
+        /// <param name="linkPath">Reference path</param>
+        void CreateLink(string linkName, string linkPath);
+
+        /// <summary>
+        /// Delete this item
+        /// </summary>
+        void Delete();
     }
 }

@@ -34,6 +34,7 @@
     <Reference Include="MediaDevices, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediaDevices.1.5.0\lib\net45\MediaDevices.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="SharpAdbClient, Version=2.1.0.0, Culture=neutral, PublicKeyToken=d728076f5d82a2e8, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpAdbClient.2.1.0\lib\net451\SharpAdbClient.dll</HintPath>
     </Reference>
@@ -47,7 +48,6 @@
     <Compile Include="Adb\AdbEntry.cs" />
     <Compile Include="DeviceFactory.cs" />
     <Compile Include="DeviceType.cs" />
-    <Compile Include="EntryType.cs" />
     <Compile Include="IClient.cs" />
     <Compile Include="IDevice.cs" />
     <Compile Include="IEntry.cs" />
@@ -65,19 +65,18 @@
     <Compile Include="Windows\WindowsEntry.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MediaDevices.chm" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MediaDevicesLicense.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Explorer\Explorer.csproj">
       <Project>{03fb5d97-71e4-4304-b52f-6836605398b5}</Project>
       <Name>Explorer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

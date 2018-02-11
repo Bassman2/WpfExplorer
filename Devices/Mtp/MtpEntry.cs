@@ -1,4 +1,5 @@
-﻿using MediaDevices;
+﻿using ExplorerCtrl;
+using MediaDevices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,6 +19,8 @@ namespace Devices.Mtp
             this.device = device;
             this.entry = entry;
         }
+
+        #region IExplorerItem
 
         public string Name
         {
@@ -91,12 +94,29 @@ namespace Devices.Mtp
             this.device.device.CreateDirectory(path);
         }
 
+        public void Pull(string path, Stream stream)
+        {
+            this.device.device.DownloadFile(path, stream);
+        }
+
+        public void Push(Stream stream, string path)
+        {
+            this.device.device.UploadFile(stream, path);
+        }
+
+        #endregion
+
+        #region IEntry
+
+        public bool CanDelete { get { return true; } }
+        public bool CanCreateFolder { get { return this.IsDirectory; } }
+        public bool CanCreateLink { get { return false; } }
+
         public void CreateLink(string linkName, string linkPath)
         {
             throw new NotSupportedException();
         }
-
-
+        
         public void Delete()
         {
             if (this.device.device.DirectoryExists(this.FullName))
@@ -109,23 +129,6 @@ namespace Devices.Mtp
             }
         }
 
-        public void Pull(string path, Stream stream)
-        {
-            this.device.device.DownloadFile(path, stream);
-        }
-
-        public void Push(Stream stream, string path)
-        {
-            this.device.device.UploadFile(stream, path);
-        }
-
-        public bool CanDelete { get { return true; } }
-        public bool CanCreateFolder { get { return this.IsDirectory; } }
-        public bool CanCreateLink { get { return false; } }
-
-        //public override string ToString()
-        //{
-        //    return this.FullName;
-        //}
+        #endregion
     }
 }

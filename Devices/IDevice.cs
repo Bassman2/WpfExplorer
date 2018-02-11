@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExplorerCtrl;
+using System;
 using System.Collections.Generic;
 
 namespace Devices
@@ -7,20 +8,20 @@ namespace Devices
     {
         string Name { get; }
 
-        string Id { get; }
+        //string Id { get; }
 
-        IEntry Root { get; }
+        IExplorerItem Root { get; }
 
-        bool FolderExist(string path);
+        //bool FolderExist(string path);
         
-        bool HasDeviceInfo { get; }
+        //bool HasDeviceInfo { get; }
 
-        Dictionary<string, string> GetDeviceInfo();
+        //Dictionary<string, string> GetDeviceInfo();
 
-        bool HasMemoryInfo { get; }
+        //bool HasMemoryInfo { get; }
 
-        Dictionary<string, DeviceMemoryInfo> GetMemoryInfo();
+        //Dictionary<string, DeviceMemoryInfo> GetMemoryInfo();
         
-        void Reboot();
+        //void Reboot();
     }
 }

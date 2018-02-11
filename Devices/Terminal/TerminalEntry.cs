@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExplorerCtrl;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -32,6 +33,8 @@ namespace Devices.Terminal
             this.device = device;
             this.path = path;
         }
+
+        #region IExplorerItem
 
         public string Name { get; private set;}
         
@@ -68,22 +71,8 @@ namespace Devices.Terminal
         {
             return this.device.ReadDirectory(this.path);
         }
-
-        public void CreateFolder(string folderName)
-        {
-            throw new NotSupportedException();
-        }
-
-        public void CreateLink(string linkName, string linkPath)
-        {
-            throw new NotSupportedException();
-        }
+               
         
-        public void Delete()
-        {
-            throw new NotSupportedException();
-        }
-
         public void Pull(string path, Stream stream)
         {
             throw new NotSupportedException();
@@ -94,8 +83,29 @@ namespace Devices.Terminal
             throw new NotSupportedException();
         }
 
-        public bool CanDelete { get { return true; } }
-        public bool CanCreateFolder { get { return this.IsDirectory; } }
-        public bool CanCreateLink { get { return false; } }
+        public void CreateFolder(string folderName)
+        {
+            throw new NotSupportedException();
+        }
+        
+        #endregion
+
+        #region IEntry
+
+        public bool CanCreateFolder { get { return true; } }
+        public bool CanCreateLink { get { return this.IsDirectory; } }
+        public bool CanDelete { get { return false; } }
+               
+        public void CreateLink(string linkName, string linkPath)
+        {
+            throw new NotSupportedException();
+        }
+
+        public void Delete()
+        {
+            throw new NotSupportedException();
+        }
+
+        #endregion
     }
 }

@@ -5,12 +5,12 @@ namespace Devices
 {
     public interface IClient
     {
-        event EventHandler DevicesChanged;
+        //event EventHandler DevicesChanged;
 
         string Name { get; }
 
         string Description { get; }
-
+        
         IEnumerable<IDevice> Devices { get; }
     }
 }

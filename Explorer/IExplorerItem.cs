@@ -13,7 +13,7 @@ namespace ExplorerCtrl
     /// <summary>
     /// Interface for the explorer item class.
     /// </summary>
-    public interface IExplorerItem : IEquatable<IExplorerItem>
+    public interface IExplorerItem //: IEquatable<IExplorerItem>
     {
         /// <summary>
         /// Event to signal an refresh.
