@@ -1,4 +1,5 @@
 ﻿using Devices.Internal;
+using ExplorerCtrl;
 using MediaDevices;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace Devices.Mtp
 {
     [DebuggerDisplay("{Name}")]
-    public class MtpDevice : IDevice, IEquatable<IDevice>, IComparable<IDevice>
+    public class MtpDevice : IDevice//, IEquatable<IDevice>, IComparable<IDevice>
     {
         internal MediaDevice device;
         
@@ -59,7 +60,7 @@ namespace Devices.Mtp
         //    }
         //}
 
-        public IEntry Root
+        public IExplorerItem Root
         {
             get
             {

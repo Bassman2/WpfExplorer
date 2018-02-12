@@ -30,19 +30,9 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar >
-                <RadioButton IsChecked="True" Checked="OnWindows"  >
-                    <Image Source="/DeviceExplorer;component/Images/Windows.png" Width="16" Height="16"/>
-                </RadioButton>
-                <RadioButton Checked="OnAndroid" >
-                    <Image Source="/DeviceExplorer;component/Images/Android.png" Width="16" Height="16"/>
-                </RadioButton>
-                <RadioButton Checked="OnMedia" >
-                    <Image Source="/DeviceExplorer;component/Images/MTP.png" Width="16" Height="16"/>
-                </RadioButton>
-                <RadioButton Checked="OnTerminal" >
-                    <Image Source="/DeviceExplorer;component/Images/Terminal.png" Width="16" Height="16"/>
-                </RadioButton>
-                <ComboBox x:Name="devicesComboBox" IsEditable="True" IsReadOnly="True" Width="240" />
+                <ComboBox x:Name="clientsComboBox" DisplayMemberPath="Name" Width="100" SelectionChanged="OnClientSelectionChanged" />
+                <Separator/>
+                <ComboBox x:Name="devicesComboBox" DisplayMemberPath="Name"  Width="300" SelectionChanged="OnDeviceSelectionChanged" />
                 <Separator/>
                 <Button Click="OnRefresh" >
                     <Image Source="/DeviceExplorer;component/Images/Refresh.png" Width="16" Height="16"/>

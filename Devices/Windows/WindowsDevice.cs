@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Devices.Windows
 {
     [DebuggerDisplay("{Name}")]
-    public class WindowsDevice : IDevice, IEquatable<IDevice>, IComparable<IDevice>
+    public class WindowsDevice : IDevice//, IEquatable<IDevice>, IComparable<IDevice>
     {
         private DriveInfo deviceInfo;
 
@@ -28,6 +28,8 @@ namespace Devices.Windows
                 return this.deviceInfo.Name;
             }
         }
+
+        #endregion
 
         //public string Id
         //{

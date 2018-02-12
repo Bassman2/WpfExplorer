@@ -142,7 +142,6 @@
     <Resource Include="Images\Shell.png" />
     <Resource Include="Images\Studio.png" />
     <Resource Include="Images\Properties.png" />
-    <Resource Include="Images\Android.png" />
     <Resource Include="Images\MTP.png" />
     <Resource Include="Images\Folder2.png" />
     <Resource Include="Images\Default.png" />

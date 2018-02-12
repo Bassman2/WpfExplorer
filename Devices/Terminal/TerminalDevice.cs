@@ -5,11 +5,12 @@ using System.IO.Ports;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Linq;
+using ExplorerCtrl;
 
 namespace Devices.Terminal
 {
     [DebuggerDisplay("{Name}")]
-    public class TerminalDevice : IDevice, IEquatable<IDevice>, IComparable<IDevice>
+    public class TerminalDevice : IDevice//, IEquatable<IDevice>, IComparable<IDevice>
     {
         internal SerialPort device;
 
@@ -35,7 +36,7 @@ namespace Devices.Terminal
             }
         }
         
-        public IEntry Root
+        public IExplorerItem Root
         {
             get
             {

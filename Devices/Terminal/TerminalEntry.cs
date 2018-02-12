@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Windows.Media;
 
 namespace Devices.Terminal
 {
@@ -23,7 +25,7 @@ namespace Devices.Terminal
             this.Name = "/";
             this.FullName = "/";
             this.Link = null;
-            this.Type = EntryType.Directory;
+            this.Type = ExplorerItemType.Directory;
             this.Size = 0;
             this.Date = new DateTime(1970, 1, 1);
         }
@@ -36,40 +38,55 @@ namespace Devices.Terminal
 
         #region IExplorerItem
 
-        public string Name { get; private set;}
+        public event EventHandler<RefreshEventArgs> Refresh;
+
+        public string Name { get; set;}
         
         public string FullName { get; private set; }
         
         public string Link { get; private set; }
         
-        public EntryType Type { get; private set; }
-        
         public long Size { get; private set; }
         
 
-        public DateTime? Date { get; private set; }        
+        public DateTime? Date { get; private set; }
+
+        public ExplorerItemType Type { get; private set; }
+
+        public ImageSource Icon { get; }
 
         public bool IsDirectory
         {
-            get { return this.Type == EntryType.Directory || this.Type == EntryType.Link; }
+            get { return this.Type == ExplorerItemType.Directory || this.Type == ExplorerItemType.Link; }
         }
 
-        public IDevice Device
+        //public IDevice Device
+        //{
+        //    get
+        //    {
+        //        return (IDevice)this.device;
+        //    }
+        //}
+
+        //public IEnumerable<IEntry> GetFolders()
+        //{
+        //    return this.device.ReadDirectory(this.path);
+        //}
+
+        public bool HasChildren
         {
             get
             {
-                return (IDevice)this.device;
+                return this.Children.Any();
             }
         }
 
-        public IEnumerable<IEntry> GetFolders()
+        public IEnumerable<IExplorerItem> Children
         {
-            return this.device.ReadDirectory(this.path);
-        }
-
-        public IEnumerable<IEntry> GetEntries()
-        {
-            return this.device.ReadDirectory(this.path);
+            get
+            {
+                return this.device.ReadDirectory(this.path);
+            }
         }
                
         

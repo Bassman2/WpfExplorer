@@ -1,4 +1,5 @@
 ﻿using Devices;
+using ExplorerCtrl;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,55 +25,62 @@ namespace DeviceExplorer
     /// </summary>
     public partial class MainWindow : UsbMonitorWindow
     {
-        private DeviceType deviceType = DeviceType.Windows;
-        private List<IDevice> devices;
+        private IClient selectedClient;
         private IDevice selectedDevice;
         
         public MainWindow()
         {
             InitializeComponent();
-        }
-        
-        private void OnWindows(object sender, RoutedEventArgs e)
-        {
-            this.deviceType = DeviceType.Windows;
 
-            this.devices.Clear();
-            var devs = DeviceFactory.GetClient(this.deviceType).Devices;
-        }
-
-        private void OnAndroid(object sender, RoutedEventArgs e)
-        {
-            this.deviceType = DeviceType.ADB;
+            // fill client ComboBox
+            foreach (var client in DeviceFactory.Clients)
+            {
+                this.clientsComboBox.Items.Add(client);
+            }
+            this.clientsComboBox.SelectedIndex = 0;
         }
 
-        private void OnMedia(object sender, RoutedEventArgs e)
+        private void OnClientSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.deviceType = DeviceType.MTP;
-        }
-
-        private void OnTerminal(object sender, RoutedEventArgs e)
-        {
-            this.deviceType = DeviceType.Terminal;
-        }
-
-        private void RefreshDevice(DeviceType deviceType)
-        {
-            this.deviceType = deviceType;
-
-            this.devicesComboBox.Items.Clear();
-            var devs = DeviceFactory.GetClient(this.deviceType).Devices;
-            devs.ToList().ForEach(d => this.devicesComboBox.Items.Add(d));
-            this.devicesComboBox.SelectedIndex = 0;
-
-            this.selectedDevice = (IDevice)this.devicesComboBox.SelectedItem;
-
-
+            this.selectedClient = e.AddedItems.Cast<IClient>().FirstOrDefault();
+            RefreshDevice();
         }
 
         private void OnRefresh(object sender, RoutedEventArgs e)
         {
+            RefreshDevice();
+        }
 
+        protected override void OnUsbChanged()
+        {
+            RefreshDevice();
+        }
+        
+        private void OnDeviceSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.selectedDevice = e.AddedItems.Cast<IDevice>().FirstOrDefault();
+
+            RefreshExplorer();
+        }
+
+        private void RefreshDevice()
+        {
+            this.devicesComboBox.Items.Clear();
+            foreach (var device in this.selectedClient.Devices)
+            {
+                this.devicesComboBox.Items.Add(device);
+            }
+            this.devicesComboBox.SelectedIndex = 0;
+        }
+
+        private void RefreshExplorer()
+        {
+            var root = new List<IExplorerItem>();
+            if (this.selectedDevice != null)
+            {
+                root.Add(this.selectedDevice.Root);
+            }
+            this.explorer.ItemsSource = root;
         }
     }
 }

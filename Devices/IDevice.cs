@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Devices
 {
-    public interface IDevice : IEquatable<IDevice>, IComparable<IDevice>
+    public interface IDevice //: IEquatable<IDevice>, IComparable<IDevice>
     {
         string Name { get; }
 

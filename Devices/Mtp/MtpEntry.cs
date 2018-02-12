@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows.Media;
 
 namespace Devices.Mtp
 {
@@ -22,9 +23,12 @@ namespace Devices.Mtp
 
         #region IExplorerItem
 
+        public event EventHandler<RefreshEventArgs> Refresh;
+
         public string Name
         {
             get { return this.entry.Name; }
+            set { }
         }
        
         public string FullName
@@ -37,12 +41,7 @@ namespace Devices.Mtp
             // links not sopported for MTP
             get { return string.Empty; }
         }
-       
-        public EntryType Type
-        {
-            get { return this.IsDirectory ? EntryType.Directory : EntryType.File; }
-        }
-
+              
         public long Size
         {
             get { return (long)this.entry.Length; }
@@ -53,37 +52,55 @@ namespace Devices.Mtp
             get { return this.entry.LastWriteTime;  }
         }
 
+        public ExplorerItemType Type
+        {
+            get { return this.IsDirectory ? ExplorerItemType.Directory : ExplorerItemType.File; }
+        }
+
+        public ImageSource Icon { get; }
+
+        public bool HasChildren
+        {
+            get
+            {
+                return this.Children.Any();
+            }
+        }
+
         public bool IsDirectory
         {
             get { return this.entry.Attributes.HasFlag(MediaFileAttributes.Directory) || this.entry.Attributes.HasFlag(MediaFileAttributes.Object); }
         }
         
-        public IDevice Device
+        //public IDevice Device
+        //{
+        //    get
+        //    {
+        //        return (IDevice)this.device;
+        //    }
+        //}
+
+        //public IEnumerable<IEntry> GetFolders()
+        //{
+        //    MediaDirectoryInfo dir = this.entry as MediaDirectoryInfo;
+        //    if (dir == null)
+        //    {
+        //        throw new Exception();
+        //    }
+        //    return dir.EnumerateDirectories().Select(f => new MtpEntry(this.device, f)).OrderBy(f => f.Name);
+        //}
+
+        public IEnumerable<IExplorerItem> Children
         {
             get
             {
-                return (IDevice)this.device;
+                MediaDirectoryInfo dir = this.entry as MediaDirectoryInfo;
+                //if (dir == null)
+                //{
+                //    throw new Exception();
+                //}
+                return dir?.EnumerateFileSystemInfos().Select(f => new MtpEntry(this.device, f)).OrderBy(f => f.Name);
             }
-        }
-
-        public IEnumerable<IEntry> GetFolders()
-        {
-            MediaDirectoryInfo dir = this.entry as MediaDirectoryInfo;
-            if (dir == null)
-            {
-                throw new Exception();
-            }
-            return dir.EnumerateDirectories().Select(f => new MtpEntry(this.device, f)).OrderBy(f => f.Name);
-        }
-
-        public IEnumerable<IEntry> GetEntries()
-        {
-            MediaDirectoryInfo dir = this.entry as MediaDirectoryInfo;
-            //if (dir == null)
-            //{
-            //    throw new Exception();
-            //}
-            return dir?.EnumerateFileSystemInfos().Select(f => new MtpEntry(this.device, f)).OrderBy(f => f.Name);
         }
 
         //bool FolderExist(string path);
