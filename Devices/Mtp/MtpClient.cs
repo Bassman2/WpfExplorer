@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Media;
 
 namespace Devices.Mtp
 {
@@ -14,12 +15,16 @@ namespace Devices.Mtp
             //MediaDevice.DeviceRemoved += (s, e) => this.DevicesChanged?.Invoke(this, new EventArgs());
         }
 
+        #region IClient
+
         #pragma warning disable 414, 67
         public event EventHandler DevicesChanged;
 
-        public string Name { get { return "MTP"; } }
+        public string Name { get { return "Media Device"; } }
 
-        public string Description { get { return "Media Transport Protocol"; } }
+        public string Description { get { return "Media Device over Media Transport Protocol"; } }
+
+        public ImageSource Icon { get { return DeviceIcons.Device; } }
 
         public IEnumerable<IDevice> Devices
         {
@@ -28,5 +33,7 @@ namespace Devices.Mtp
                 return MediaDevice.GetDevices().Select(d => new MtpDevice(d));
             }
         }
+
+        #endregion
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="Adb\AdbDevice.cs" />
     <Compile Include="Adb\AdbEntry.cs" />
     <Compile Include="DeviceFactory.cs" />
+    <Compile Include="DeviceIcons.cs" />
     <Compile Include="DeviceType.cs" />
     <Compile Include="IClient.cs" />
     <Compile Include="IDevice.cs" />
@@ -85,6 +86,12 @@
     <Content Include="AdbWinUsbApi.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\Link.png" />
+    <Resource Include="Images\File.png" />
+    <Resource Include="Images\Folder.png" />
+    <Resource Include="Images\Device.png" />
+    <Resource Include="Images\Terminal.png" />
+    <Resource Include="Images\Windows.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Android.png" />

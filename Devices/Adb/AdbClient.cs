@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using ExtAdbClient = SharpAdbClient.AdbClient;
 
 namespace Devices.Adb
@@ -31,19 +32,23 @@ namespace Devices.Adb
             monitor.Start();
         }
 
+        #region IClient
 
         public event EventHandler DevicesChanged;
 
-        public string Name { get { return "ADB"; } }
+        public string Name { get { return "Android"; } }
 
-        public string Description { get { return "Android Debug Bridge"; } }
+        public string Description { get { return "Android Devices over Android Debug Bridge"; } }
 
+        public ImageSource Icon { get { return DeviceIcons.Android; } }
 
         public IEnumerable<IDevice> Devices
         {
             get { return client.GetDevices().Select(d => new AdbDevice(this.client, d)); }
         }
-        
+
+        #endregion
+
         private void OnDeviceChanged(object sender, DeviceDataEventArgs args)
         {
             this.DevicesChanged?.Invoke(this, new EventArgs());

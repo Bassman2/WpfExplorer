@@ -69,7 +69,6 @@
     </ApplicationDefinition>
     <Compile Include="Converter\DebugConverter.cs" />
     <Compile Include="Converter\RadioButtonConverter.cs" />
-    <Compile Include="DeviceIcons.cs" />
     <Compile Include="Misc\MemoryData.cs" />
     <Compile Include="Misc\ObservableCollectionExtensions.cs" />
     <Compile Include="Mvvm\BaseViewModel.cs" />
@@ -176,31 +175,14 @@
     <Resource Include="cellphone.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adb.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="AdbWinApi.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="AdbWinUsbApi.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Images\Windows.png" />
-    <Resource Include="Images\Terminal.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Android.png" />
     <Resource Include="Images\Check.png" />
     <Resource Include="Images\Default.png" />
     <Resource Include="Images\Delete.png" />
-    <Resource Include="Images\Device.png" />
-    <Resource Include="Images\File.png" />
     <Resource Include="Images\Folder.ico" />
-    <Resource Include="Images\Folder.png" />
     <Resource Include="Images\Folder2.png" />
     <Resource Include="Images\Folder_.png" />
     <Resource Include="Images\Graph.png" />
-    <Resource Include="Images\Link.png" />
     <Resource Include="Images\MTP.png" />
     <Resource Include="Images\Properties.png" />
     <Resource Include="Images\Refresh.png" />

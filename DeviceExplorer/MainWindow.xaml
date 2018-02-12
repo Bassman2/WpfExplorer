@@ -30,7 +30,20 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar >
-                <ComboBox x:Name="clientsComboBox" DisplayMemberPath="Name" Width="100" SelectionChanged="OnClientSelectionChanged" />
+                <ComboBox x:Name="clientsComboBox" Width="100" SelectionChanged="OnClientSelectionChanged" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                        <Grid ToolTip="{Binding Description}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Width="14" Height="14" />
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" />
+                        </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Separator/>
                 <ComboBox x:Name="devicesComboBox" DisplayMemberPath="Name"  Width="300" SelectionChanged="OnDeviceSelectionChanged" />
                 <Separator/>
