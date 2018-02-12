@@ -1,7 +1,4 @@
-﻿using DeviceExplorer.ViewModel;
-using System;
-using System.Windows;
-using WpfUsbMonitor;
+﻿using WpfUsbMonitor;
 
 namespace DeviceExplorer.View
 {
@@ -10,7 +7,6 @@ namespace DeviceExplorer.View
     /// </summary>
     public partial class MainView : UsbMonitorWindow
     {
-        
         public MainView()
         {
             InitializeComponent();

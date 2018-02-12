@@ -1,7 +1,9 @@
 ﻿using DeviceExplorer.Mvvm;
 using Devices;
+using ExplorerCtrl;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace DeviceExplorer.ViewModel
 {
@@ -10,7 +12,9 @@ namespace DeviceExplorer.ViewModel
         private IClient selectedClient;
         private ObservableCollection<IDevice> devices;
         private IDevice selectedDevice;
-        
+        private IEnumerable<IExplorerItem> rootFolders;
+        private IExplorerItem selectedFolder;
+
         public MainViewModel()
         {
         
@@ -33,7 +37,7 @@ namespace DeviceExplorer.ViewModel
                 {
                     this.selectedClient = value;
                     NotifyPropertyChanged(nameof(SelectedClient));
-                    //UpdateDevices();
+                    UpdateDevices();
                 }
             }
         }
@@ -61,23 +65,59 @@ namespace DeviceExplorer.ViewModel
             {
                 this.selectedDevice = value;
                 NotifyPropertyChanged(nameof(SelectedDevice));
-                //UpdateRootFolder();
+                UpdateExplorer();
                 
             }
         }
 
+        public IEnumerable<IExplorerItem> RootFolders
+        {
+            get
+            {
+                return this.rootFolders;
+            }
+            set
+            {
+                this.rootFolders = value;
+                NotifyPropertyChanged(nameof(RootFolders));
+            }
+        }
+
+        public IExplorerItem SelectedFolder
+        {
+            get
+            {
+                return this.selectedFolder;
+            }
+            set
+            {
+                this.selectedFolder = value;
+                NotifyPropertyChanged(nameof(SelectedFolder));
+            }
+        }
 
         protected void OnRefresh()
         {
-            //UpdateDevices();
+            UpdateDevices();
         }
 
-        
-        
-       
+
+        private void UpdateDevices()
+        {
+            this.Devices = new ObservableCollection<IDevice>(this.SelectedClient.Devices);
+            this.SelectedDevice = this.Devices.FirstOrDefault();
+        }
+
+        private void UpdateExplorer()
+        {
+            var list  = new List<IExplorerItem>();
+            list.Add(this.SelectedDevice.Root);
+            this.RootFolders = list;
+        }
+
 
         #region Properties
-        
+
 
         //public ObservableCollection<EntryViewModel> RootFolders
         //{
@@ -89,16 +129,16 @@ namespace DeviceExplorer.ViewModel
         //    get { return this.selectedFolder; }
         //    set { this.selectedFolder = value; NotifyPropertyChanged(nameof(SelectedFolder)); }
         //}
-        
-        
-        
+
+
+
         #endregion
 
         #region Methods
 
         //private void UpdateDevices()
         //{
-            
+
         //    if (change)
         //    {
         //        this.devices.Clear();
@@ -111,7 +151,7 @@ namespace DeviceExplorer.ViewModel
         //    {
         //        this.SelectedDevice = this.Devices.FirstOrDefault();
         //    }
-           
+
         //}
 
         //private void UpdateRootFolder()
@@ -134,6 +174,6 @@ namespace DeviceExplorer.ViewModel
         #endregion
 
 
-        
+
     }
 }

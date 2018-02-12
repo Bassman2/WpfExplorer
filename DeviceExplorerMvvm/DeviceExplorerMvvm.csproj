@@ -78,7 +78,6 @@
     </Compile>
     <Compile Include="Mvvm\DialogView.cs" />
     <Compile Include="Mvvm\DialogViewModel.cs" />
-    <Compile Include="Mvvm\EventToCommand.cs" />
     <Compile Include="Mvvm\GenericDelegateCommand.cs" />
     <Compile Include="ViewModel\CreateFolderViewModel.cs" />
     <Compile Include="ViewModel\CreateLinkViewModel.cs" />

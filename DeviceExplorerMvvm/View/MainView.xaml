@@ -92,30 +92,6 @@
                 FileContextMenu="{StaticResource fileContextMenu}"
                 ListContextMenu="{StaticResource listContextMenu}">
             </Explorer>
-            <!--<HideableGridSplitter Grid.Row="2" Hide="{Binding IsChartsVisible, Converter={StaticResource BooleanNotConverter}}" HorizontalAlignment="Stretch" ResizeDirection="Rows" Cursor="SizeNS" Background="Transparent"/>
-            <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="System" VerticalAlignment="Center"/>
-            <Border Grid.Row="0" Grid.Column="1" BorderBrush="Gray" Margin="3,0,3,3" BorderThickness="1">
-                <ctr:Chart  Values="{Binding MemoryValues}" Foreground="Red"/>
-            </Border>
-            <Label Grid.Row="1" Grid.Column="0" Content="Native" VerticalAlignment="Center"/>
-            <Border Grid.Row="1" Grid.Column="1" BorderBrush="Gray" Margin="3,0,3,3" BorderThickness="1">
-                <ctr:Chart Values="{Binding NativeValues}" Foreground="DarkGreen"/>
-            </Border>
-                <Label Grid.Row="2" Grid.Column="0" Content="Dalvik" VerticalAlignment="Center"/>
-                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Gray" Margin="3,0,3,3" BorderThickness="1">
-                    <ctr:Chart  Values="{Binding DalvikValues}" Foreground="Blue"/>
-                </Border>
-            </Grid>-->
         </Grid>
     </DockPanel>
 </UsbMonitorWindow>
