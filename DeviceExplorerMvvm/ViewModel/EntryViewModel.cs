@@ -23,7 +23,7 @@ namespace DeviceExplorer.ViewModel
         public DelegateCommand PropertiesCommand { get; private set; }
 
 
-        private IEntry entry;
+        private IExplorerItem entry;
         private EntryViewModel parent;
        
         /// <summary>
@@ -36,7 +36,7 @@ namespace DeviceExplorer.ViewModel
             this.entry = null;
         }
 
-        public EntryViewModel(IEntry entry, EntryViewModel parent)
+        public EntryViewModel(IExplorerItem entry, EntryViewModel parent)
         {
             this.entry = entry;
             this.parent = parent;
@@ -59,15 +59,15 @@ namespace DeviceExplorer.ViewModel
 
         public ExplorerItemType Type { get { return (ExplorerItemType)Enum.Parse(typeof(ExplorerItemType), entry.Type.ToString()); } }
 
-        public bool IsDirectory { get { return entry.Type == EntryType.Directory || entry.Type == EntryType.Link; } }
+        public bool IsDirectory { get { return entry.Type == ExplorerItemType.Directory || entry.Type == ExplorerItemType.Link; } }
 
-        public bool HasChildren { get { return entry.GetEntries().Where(e => e.Name != "." && e.Name != "..").Any(); } }
+        public bool HasChildren { get { return entry.Children.Where(e => e.Name != "." && e.Name != "..").Any(); } }
 
         public IEnumerable<IExplorerItem> Children
         {
             get
             {
-                var list = entry.GetEntries().Where(e => e.Name != "." && e.Name != "..").Select(e => new EntryViewModel(e, this));
+                var list = entry.Children.Where(e => e.Name != "." && e.Name != "..").Select(e => new EntryViewModel(e, this));
                 this.FilesCount = list.Count();
                 return list;
             }
@@ -101,7 +101,7 @@ namespace DeviceExplorer.ViewModel
         {
             if (MessageBox.Show($"Do your really want do delete {FullName}?", "Warning", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                this.entry.Delete();
+                //this.entry.Delete();
                 this.parent.DoRefresh(false);
             }
         }
@@ -123,7 +123,7 @@ namespace DeviceExplorer.ViewModel
             CreateLinkView v = new CreateLinkView() { DataContext = vm };
             if (v.ShowDialog().Value)
             {
-                this.entry.CreateLink(vm.LinkName, vm.LinkPath);
+                //this.entry.CreateLink(vm.LinkName, vm.LinkPath);
                 DoRefresh(false);
             }
         }
@@ -153,21 +153,7 @@ namespace DeviceExplorer.ViewModel
         {
             get
             {
-                if (this.FullName == "/")
-                {
-                    return DeviceIcons.Device;
-                }
-                switch (this.Type)
-                {
-                case ExplorerItemType.Directory:
-                    return DeviceIcons.Folder;
-                case ExplorerItemType.Link:
-                    return DeviceIcons.Link;
-                case ExplorerItemType.File:
-                    return DeviceIcons.File;
-                default:
-                    return DeviceIcons.Default;
-                }
+                return this.entry.Icon;
             }
         }
     }

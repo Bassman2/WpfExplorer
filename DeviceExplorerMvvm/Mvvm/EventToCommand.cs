@@ -17,10 +17,12 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Interactivity;
+//using System.Windows.Interactivity;
 
 namespace DeviceExplorer.Mvvm
 {
+    /*
+
     /// <summary>
     /// This <see cref="System.Windows.Interactivity.TriggerAction" /> can be
     /// used to bind any event on any FrameworkElement to an <see cref="ICommand" />.
@@ -338,4 +340,6 @@ namespace DeviceExplorer.Mvvm
             EnableDisableElement();
         }
     }
+
+    */
 }

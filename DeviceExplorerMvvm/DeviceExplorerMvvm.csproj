@@ -80,13 +80,8 @@
     <Compile Include="Mvvm\DialogViewModel.cs" />
     <Compile Include="Mvvm\EventToCommand.cs" />
     <Compile Include="Mvvm\GenericDelegateCommand.cs" />
-    <Compile Include="ViewModel\CheckCompanionViewModel.cs" />
     <Compile Include="ViewModel\CreateFolderViewModel.cs" />
     <Compile Include="ViewModel\CreateLinkViewModel.cs" />
-    <Compile Include="ViewModel\DeviceInfoViewModel.cs" />
-    <Compile Include="View\CheckCompanionView.xaml.cs">
-      <DependentUpon>CheckCompanionView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\CreateLinkView.xaml.cs">
       <DependentUpon>CreateLinkView.xaml</DependentUpon>
     </Compile>
@@ -96,10 +91,6 @@
     <Page Include="Mvvm\DialogButtonsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\CheckCompanionView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateLinkView.xaml">
       <SubType>Designer</SubType>

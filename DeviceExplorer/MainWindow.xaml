@@ -30,7 +30,7 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar >
-                <ComboBox x:Name="clientsComboBox" Width="100" SelectionChanged="OnClientSelectionChanged" >
+                <ComboBox x:Name="clientsComboBox" Width="120" SelectionChanged="OnClientSelectionChanged" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                         <Grid ToolTip="{Binding Description}">

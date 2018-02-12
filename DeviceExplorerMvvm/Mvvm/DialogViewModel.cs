@@ -75,7 +75,7 @@ namespace DeviceExplorer.Mvvm
                 }
             }
 
-            this.DialogResult = OnUpdate();
+            //this.DialogResult = OnUpdate();
         }
 
         /// <summary>
