@@ -8,23 +8,18 @@
         Title="Device Explorer" Height="800" Width="1400" Icon="/DeviceExplorer;component/cellphone.ico">
     <Window.Resources>
         <ContextMenu x:Key="folderContextMenu">
-            <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
+            <MenuItem Header="Delete" Click="OnDelete" IsEnabled="{Binding CanDelete}" />
             <Separator/>
-            <MenuItem Header="New Folder" Command="{Binding NewFolderCommand}" />
-            <MenuItem Header="New Link" Command="{Binding NewLinkCommand}" />
-            <Separator/>
-            <MenuItem Header="Properties" Command="{Binding PropertiesCommand}" />
+            <MenuItem Header="New Folder" Click="OnCreateFolder" IsEnabled="{Binding CanCreateFolder}" />
+            <MenuItem Header="New Link" Click="OnCreateLink" IsEnabled="{Binding CanCreateLink}"/>
         </ContextMenu>
         <ContextMenu x:Key="fileContextMenu">
-            <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
-            <Separator/>
-            <MenuItem Header="Properties" Command="{Binding PropertiesCommand}" />
+            <MenuItem Header="Delete" Click="OnDelete" IsEnabled="{Binding CanDelete}" />
         </ContextMenu>
         <ContextMenu x:Key="listContextMenu">
-            <MenuItem Header="New Folder" Command="{Binding SelectedItem.NewFolderCommand}" />
-            <MenuItem Header="New Link" Command="{Binding SelectedItem.NewLinkCommand}" />
-            <Separator/>
-            <MenuItem Header="Properties" Command="{Binding SelectedItem.PropertiesCommand}" />
+            <MenuItem Header="New Folder" Click="OnCreateFolder" IsEnabled="{Binding CanCreateFolder}" />
+            <MenuItem Header="New Link" Click="OnCreateLink" IsEnabled="{Binding CanCreateLink}" />
+            <MenuItem Header="Delete" Click="OnDelete" IsEnabled="{Binding CanDelete}" />
         </ContextMenu>
     </Window.Resources>
     <DockPanel>

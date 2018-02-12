@@ -1,21 +1,10 @@
 ﻿using Devices;
 using ExplorerCtrl;
-using System;
+using ExplorerCtrl.Internal;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using WpfUsbMonitor;
 
 namespace DeviceExplorer
@@ -81,6 +70,39 @@ namespace DeviceExplorer
                 root.Add(this.selectedDevice.Root);
             }
             this.explorer.ItemsSource = root;
+        }
+
+        private void OnDelete(object sender, RoutedEventArgs e)
+        {
+            ExplorerItem expItem = ((MenuItem)sender).DataContext as ExplorerItem;
+            IExplorerItem item = expItem?.Content;
+            IEntry entry = item as IEntry;
+            if (entry != null)
+            {
+                entry.Delete();
+            }
+        }
+
+        private void OnCreateFolder(object sender, RoutedEventArgs e)
+        {
+            ExplorerItem expItem = ((MenuItem)sender).DataContext as ExplorerItem;
+            IExplorerItem item = expItem?.Content;
+            IEntry entry = item as IEntry;
+            if (entry != null)
+            {
+                entry.CreateFolder("NewFolder");
+            }
+        }
+
+        private void OnCreateLink(object sender, RoutedEventArgs e)
+        {
+            ExplorerItem expItem = ((MenuItem)sender).DataContext as ExplorerItem;
+            IExplorerItem item = expItem?.Content;
+            IEntry entry = item as IEntry;
+            if (entry != null)
+            {
+                entry.CreateLink("NewLink", "xxx");
+            }
         }
     }
 }

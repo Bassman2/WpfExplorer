@@ -1,14 +1,15 @@
-﻿using System;
+﻿using ExplorerCtrl.Internal;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 
 namespace ExplorerCtrl.Converter
 {
     /// <summary>
-    /// Convert long to KB string
+    /// Convert IExplorerItem to size string
     /// </summary>
-    [ValueConversion(typeof(long), typeof(string))]
-    public class LongToKBStringConverter : IValueConverter
+    [ValueConversion(typeof(ExplorerItem), typeof(string))]
+    internal class ItemToSizeStringConverter : IValueConverter
     {
         /// <summary>
         /// Converts a value.
@@ -20,8 +21,29 @@ namespace ExplorerCtrl.Converter
         /// <returns>A converted value. If the method returns null, the valid null value is used.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            long k = (long)Math.Ceiling((long)value / 1024.0);
-            return $"{k:N0} KB";
+            ExplorerItem item = value as ExplorerItem;
+            if (item != null && item.Type == ExplorerItemType.File)
+            {
+                long k = (long)Math.Ceiling(item.Size / 1024.0);
+                return $"{k:N0} KB";
+
+                //long m = (long)Math.Ceiling(item.Size / (1024.0 * 1024.0));
+                //long g = (long)Math.Ceiling(item.Size / (1024.0 * 1024.0 * 1024.0));
+
+                //if (m >= 1000000)
+                //{
+                //    return $"{g:N0} GB";
+                //}
+                //else if (k >= 1000000)
+                //{
+                //    return $"{m:N0} MB";
+                //}
+                //else
+                //{
+                //    return $"{k:N0} KB";
+                //}
+            }
+            return null;
         }
 
         /// <summary>

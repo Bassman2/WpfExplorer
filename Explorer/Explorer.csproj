@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\AnimationImage.cs" />
+    <Compile Include="Converter\ItemToSizeStringConverter.cs" />
     <Compile Include="Internal\FileDescriptor.cs" />
     <Compile Include="RefreshEventArgs.cs" />
     <Page Include="Internal\ProgressWindow.xaml">
@@ -62,15 +63,13 @@
     </Page>
     <Compile Include="Converter\DateTimeToShortStringConverter.cs" />
     <Compile Include="Converter\DebugConverter.cs" />
-    <Compile Include="Converter\LongToKBStringConverter.cs" />
-    <Compile Include="Converter\LongToMBStringConverter.cs" />
     <Compile Include="Explorer.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\Dummy.cs" />
-    <Compile Include="Internal\ExplorerItem.cs" />
+    <Compile Include="ExplorerItem.cs" />
     <Compile Include="ExplorerItemType.cs" />
     <Compile Include="IExplorerItem.cs" />
     <Compile Include="Internal\DelegateCommand.cs" />

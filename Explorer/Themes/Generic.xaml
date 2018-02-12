@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:ExplorerCtrl"
     xmlns:conv="clr-namespace:ExplorerCtrl.Converter">    
-    <conv:LongToKBStringConverter x:Key="LongToKBStringConverter"/> 
     <conv:DateTimeToShortStringConverter x:Key="DateTimeToShortStringConverter"/>
+    <conv:ItemToSizeStringConverter x:Key="ItemToSizeStringConverter"/>
     <conv:DebugConverter x:Key="DebugConverter" />
     <Style TargetType="{x:Type local:Explorer}">  
         <Setter Property="Template">
@@ -65,7 +65,7 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="Size" Binding="{Binding Path=Size, Mode=OneWay, Converter={StaticResource LongToKBStringConverter}}" Width="80" >
+                                <DataGridTextColumn Header="Size" Binding="{Binding Mode=OneWay, Converter={StaticResource ItemToSizeStringConverter}}" Width="80" >
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Setter Property="HorizontalAlignment" Value="Right" />

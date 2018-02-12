@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExplorerCtrl.Internal;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,10 +9,10 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace ExplorerCtrl.Internal
+namespace ExplorerCtrl
 {
     [DebuggerDisplay("{Type} - {FullName}")]
-    internal class ExplorerItem : DependencyObject, IEquatable<ExplorerItem>
+    public class ExplorerItem : DependencyObject//, IEquatable<ExplorerItem>
     {
         public static readonly DependencyProperty NameProperty;
         public static readonly DependencyProperty FullNameProperty;
@@ -104,19 +105,19 @@ namespace ExplorerCtrl.Internal
             set { SetValue(ContentProperty, value); }
         }
 
-        public bool IsExpanded
+        internal bool IsExpanded
         {
             get { return (bool)GetValue(IsExpandedProperty); }
             set { SetValue(IsExpandedProperty, value); }
         }
 
-        public bool IsSelectedInTree
+        internal bool IsSelectedInTree
         {
             get { return (bool)GetValue(IsSelectedInTreeProperty); }
             set { SetValue(IsSelectedInTreeProperty, value); }
         }
 
-        public bool IsSelectedInList
+        internal bool IsSelectedInList
         {
             get { return (bool)GetValue(IsSelectedInListProperty); }
             set { SetValue(IsSelectedInListProperty, value); }
@@ -147,12 +148,12 @@ namespace ExplorerCtrl.Internal
         }
 
         private bool isInitialFilled = false;
-        protected ObservableCollection<ExplorerItem> children;
+        private ObservableCollection<ExplorerItem> children;
         private CollectionViewSource folders;
         private CollectionViewSource files;
   
 
-        public ExplorerItem(IExplorerItem content, ExplorerItem parent)
+        internal ExplorerItem(IExplorerItem content, ExplorerItem parent)
         {
             this.Parent = parent;
             content.Refresh += OnRefresh;
@@ -189,12 +190,12 @@ namespace ExplorerCtrl.Internal
         internal ExplorerItem Parent { get; private set; }
 
 
-        public void OnRefresh(object sender, RefreshEventArgs e)
+        private void OnRefresh(object sender, RefreshEventArgs e)
         {
             Refresh(e.Recursive);
         }
 
-        public void Refresh(bool recursive)
+        internal void Refresh(bool recursive)
         {
             if (!this.isInitialFilled)
             {
@@ -218,13 +219,13 @@ namespace ExplorerCtrl.Internal
             }
         }
         
-        #region  IEquatable<ExplorerItem>
+        //#region  IEquatable<ExplorerItem>
 
-        public virtual bool Equals(ExplorerItem other)
-        {
-            return other.Content == this.Content;
-        }
+        //public virtual bool Equals(ExplorerItem other)
+        //{
+        //    return other.Content == this.Content;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

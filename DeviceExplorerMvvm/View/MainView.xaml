@@ -10,8 +10,6 @@
         <vm:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <LongToKBStringConverter x:Key="LongToKBStringConverter"/>
-        <LongToMBStringConverter x:Key="LongToMBStringConverter"/>
         <ContextMenu x:Key="folderContextMenu">
             <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
             <Separator/>
