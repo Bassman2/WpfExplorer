@@ -38,6 +38,7 @@ namespace Devices.Terminal
 
         #region IExplorerItem
 
+        #pragma warning disable 414, 67
         public event EventHandler<RefreshEventArgs> Refresh;
 
         public string Name { get; set;}
@@ -53,7 +54,23 @@ namespace Devices.Terminal
 
         public ExplorerItemType Type { get; private set; }
 
-        public ImageSource Icon { get; }
+        public ImageSource Icon
+        {
+            get
+            {
+                switch (this.Type)
+                {
+                    case ExplorerItemType.Directory:
+                        return DeviceIcons.Folder;
+                    case ExplorerItemType.Link:
+                        return DeviceIcons.Link;
+                    case ExplorerItemType.File:
+                        return DeviceIcons.File;
+                    default:
+                        return null;
+                }
+            }
+        }
 
         public bool IsDirectory
         {

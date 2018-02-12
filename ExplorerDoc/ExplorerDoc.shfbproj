@@ -30,9 +30,9 @@
       <DocumentationSource sourceFile="..\Explorer\Explorer.csproj" xmlns="" />
     </DocumentationSources>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="(global)" isDocumented="True" xmlns="" />
-<NamespaceSummaryItem name="ExplorerCtrl" isDocumented="True" xmlns="">Namespace for the explorer control</NamespaceSummaryItem>
-<NamespaceSummaryItem name="ExplorerCtrl.Converter" isDocumented="True" xmlns="" /></NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="True" />
+<NamespaceSummaryItem name="ExplorerCtrl" isDocumented="True">Namespace for the explorer control</NamespaceSummaryItem>
+<NamespaceSummaryItem name="ExplorerCtrl.Converter" isDocumented="True">Namespace for the Explorer control converter</NamespaceSummaryItem></NamespaceSummaries>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

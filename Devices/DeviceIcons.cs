@@ -17,20 +17,15 @@ namespace Devices
 
         static DeviceIcons()
         {
-            try
-            {
-                imgWindows = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Windows.png"));
-                imgAndroid = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Android.png"));
-                imgTerminal = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Terminal.png"));
-                imgDevice = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Device.png"));
-                imgFolder = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Folder.png"));
-                imgFile = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/File.png"));
-                imgLink = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Link.png"));
-                //imgDefault = new BitmapImage(new Uri("pack://application:,,,/Images/Default.png"));
-            }
-            catch (Exception ex)
-            {
-            }
+            
+            imgWindows = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Windows.png"));
+            imgAndroid = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Android.png"));
+            imgTerminal = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Terminal.png"));
+            imgDevice = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Device.png"));
+            imgFolder = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Folder.png"));
+            imgFile = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/File.png"));
+            imgLink = new BitmapImage(new Uri("pack://application:,,,/Devices;component/Images/Link.png"));
+            //imgDefault = new BitmapImage(new Uri("pack://application:,,,/Images/Default.png"));
         }
 
         public static ImageSource Windows { get { return imgWindows; } }

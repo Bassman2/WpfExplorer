@@ -11,7 +11,7 @@ using ExtAdbClient = SharpAdbClient.AdbClient;
 namespace Devices.Adb
 {
     [DebuggerDisplay("{Name}")]
-    public class AdbDevice : IDevice, IEquatable<IDevice>, IComparable<IDevice>
+    public class AdbDevice : IDevice//, IEquatable<IDevice>, IComparable<IDevice>
     {
         internal ExtAdbClient client;
         internal DeviceData deviceData;
@@ -137,198 +137,198 @@ namespace Devices.Adb
         //    }
         //}
 
-        public bool HasDeviceInfo
-        {
-            get { return true; }
-        }
+        //public bool HasDeviceInfo
+        //{
+        //    get { return true; }
+        //}
 
-        public Dictionary<string, string> GetDeviceInfo()
-        {
-            Dictionary<string, string> deviceInfo = null;
-            try
-            {
-                //deviceInfo.Product = ExcecuteCommandResult("getprop ro.build.product").Trim();
-                //deviceInfo.System = "Android";
-                //deviceInfo.Version = ExcecuteCommandResult("getprop ro.build.version.release").Trim();
-                //deviceInfo.Release = ExcecuteCommandResult("getprop ro.build.version.sdk").Trim();
-                //deviceInfo.BuildDate = ExcecuteCommandResult("getprop ro.build.date").Trim();
-                //deviceInfo.BuildId = ExcecuteCommandResult("getprop ro.build.id").Trim();
-                //deviceInfo.Hardware = ExcecuteCommandResult("getprop ro.hardware").Trim();
-                //deviceInfo.Board = ExcecuteCommandResult("getprop ro.product.board").Trim();
-                //deviceInfo.CPU = ExcecuteCommandResult("getprop ro.product.cpu.abi").Trim();
-                //deviceInfo.Device = ExcecuteCommandResult("getprop ro.product.device").Trim();
-                //deviceInfo.Model = ExcecuteCommandResult("getprop ro.product.model").Trim();
-                //deviceInfo.OpenGl = ExcecuteCommandResult("getprop ro.opengles.version").Trim();
-                //deviceInfo.Language = ExcecuteCommandResult("getprop ro.product.locale.language").Trim() + "-" + ExcecuteCommandResult("getprop ro.product.locale.region").Trim();
-                //deviceInfo.Timezone = ExcecuteCommandResult("getprop persist.sys.timezone").Trim();
-                //deviceInfo.Fingerprint = ExcecuteCommandResult("getprop ro.build.fingerprint").Trim();
-                //deviceInfo.Fingerprint = ExcecuteCommandResult("getprop ro.build.fingerprint").Trim();
-                //deviceInfo.Heapsize = ExcecuteCommandResult("getprop dalvik.vm.heapsize").Trim();
+        //public Dictionary<string, string> GetDeviceInfo()
+        //{
+        //    Dictionary<string, string> deviceInfo = null;
+        //    try
+        //    {
+        //        //deviceInfo.Product = ExcecuteCommandResult("getprop ro.build.product").Trim();
+        //        //deviceInfo.System = "Android";
+        //        //deviceInfo.Version = ExcecuteCommandResult("getprop ro.build.version.release").Trim();
+        //        //deviceInfo.Release = ExcecuteCommandResult("getprop ro.build.version.sdk").Trim();
+        //        //deviceInfo.BuildDate = ExcecuteCommandResult("getprop ro.build.date").Trim();
+        //        //deviceInfo.BuildId = ExcecuteCommandResult("getprop ro.build.id").Trim();
+        //        //deviceInfo.Hardware = ExcecuteCommandResult("getprop ro.hardware").Trim();
+        //        //deviceInfo.Board = ExcecuteCommandResult("getprop ro.product.board").Trim();
+        //        //deviceInfo.CPU = ExcecuteCommandResult("getprop ro.product.cpu.abi").Trim();
+        //        //deviceInfo.Device = ExcecuteCommandResult("getprop ro.product.device").Trim();
+        //        //deviceInfo.Model = ExcecuteCommandResult("getprop ro.product.model").Trim();
+        //        //deviceInfo.OpenGl = ExcecuteCommandResult("getprop ro.opengles.version").Trim();
+        //        //deviceInfo.Language = ExcecuteCommandResult("getprop ro.product.locale.language").Trim() + "-" + ExcecuteCommandResult("getprop ro.product.locale.region").Trim();
+        //        //deviceInfo.Timezone = ExcecuteCommandResult("getprop persist.sys.timezone").Trim();
+        //        //deviceInfo.Fingerprint = ExcecuteCommandResult("getprop ro.build.fingerprint").Trim();
+        //        //deviceInfo.Fingerprint = ExcecuteCommandResult("getprop ro.build.fingerprint").Trim();
+        //        //deviceInfo.Heapsize = ExcecuteCommandResult("getprop dalvik.vm.heapsize").Trim();
 
-                deviceInfo = new Dictionary<string, string>();
-                string prop = ExcecuteCommandResult("getprop");
-                foreach (string line in prop.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    Match match = Regex.Match(line, @"\[(?<name>[^\]]+)\]: \[(?<value>[^\]]+)\]");
-                    if (match.Success)
-                    {
-                        string name = match.Groups["name"].Value;
-                        string value = match.Groups["value"].Value;
-                        deviceInfo.Add(name, value);
-                    }
-                }
-            }
-            catch { }
-            return deviceInfo;
-        }
+        //        deviceInfo = new Dictionary<string, string>();
+        //        string prop = ExcecuteCommandResult("getprop");
+        //        foreach (string line in prop.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries))
+        //        {
+        //            Match match = Regex.Match(line, @"\[(?<name>[^\]]+)\]: \[(?<value>[^\]]+)\]");
+        //            if (match.Success)
+        //            {
+        //                string name = match.Groups["name"].Value;
+        //                string value = match.Groups["value"].Value;
+        //                deviceInfo.Add(name, value);
+        //            }
+        //        }
+        //    }
+        //    catch { }
+        //    return deviceInfo;
+        //}
 
-        public bool HasMemoryInfo
-        {
-            get { return true; }
-        }
+        //public bool HasMemoryInfo
+        //{
+        //    get { return true; }
+        //}
 
-        private bool useBusybox = true;
-        private bool useVmstat = true; 
+        //private bool useBusybox = true;
+        //private bool useVmstat = true; 
 
-        private const long Kilo = 1024;
-        private const long Mega = 1024 * 1024;
-        private const long Giga = 1024 * 1024 * 1024;
+        //private const long Kilo = 1024;
+        //private const long Mega = 1024 * 1024;
+        //private const long Giga = 1024 * 1024 * 1024;
 
-        public Dictionary<string, DeviceMemoryInfo> GetMemoryInfo()
-        {
-            Dictionary<string, DeviceMemoryInfo> deviceMemory = new Dictionary<string, DeviceMemoryInfo>();
-            if (useBusybox)
-            {
-                try
-                {
-                    // busybox free -m; vmstat -n 1
-                    string res = ExcecuteCommandResult("busybox free -m");
-                    Match match = Regex.Match(res, @"[^\n]*\nMem:\s+(?<total>\d+)\s+(?<used>\d+)\s+(?<free>\d+)");
-                    if (!match.Success)
-                    {
-                        throw new Exception("Parse free failed");
-                    }
-                    deviceMemory.Add("System", new DeviceMemoryInfo(
-                        long.Parse(match.Groups["total"].Value) * Mega,
-                        long.Parse(match.Groups["used"].Value) * Mega,
-                        long.Parse(match.Groups["free"].Value) * Mega));
-                }
-                catch
-                {
-                    useBusybox = false;
-                }
-            }
+        //public Dictionary<string, DeviceMemoryInfo> GetMemoryInfo()
+        //{
+        //    Dictionary<string, DeviceMemoryInfo> deviceMemory = new Dictionary<string, DeviceMemoryInfo>();
+        //    if (useBusybox)
+        //    {
+        //        try
+        //        {
+        //            // busybox free -m; vmstat -n 1
+        //            string res = ExcecuteCommandResult("busybox free -m");
+        //            Match match = Regex.Match(res, @"[^\n]*\nMem:\s+(?<total>\d+)\s+(?<used>\d+)\s+(?<free>\d+)");
+        //            if (!match.Success)
+        //            {
+        //                throw new Exception("Parse free failed");
+        //            }
+        //            deviceMemory.Add("System", new DeviceMemoryInfo(
+        //                long.Parse(match.Groups["total"].Value) * Mega,
+        //                long.Parse(match.Groups["used"].Value) * Mega,
+        //                long.Parse(match.Groups["free"].Value) * Mega));
+        //        }
+        //        catch
+        //        {
+        //            useBusybox = false;
+        //        }
+        //    }
 
-            if (!useBusybox && useVmstat)
-            {
-                try
-                {
-                    string res = ExcecuteCommandResult("vmstat -n 1");
-                    Match match = Regex.Match(res, @"[^\n]*\n[^\n]*\n\s*(?<r>\d+)\s+(?<b>\d+)\s+(?<free>\d+)\s+(?<mapped>\d+)\s+(?<anon>\d+)\s+(?<slab>\d+)");
-                    if (!match.Success)
-                    {
-                        throw new Exception("Parse vmstat failed");
-                    }
+        //    if (!useBusybox && useVmstat)
+        //    {
+        //        try
+        //        {
+        //            string res = ExcecuteCommandResult("vmstat -n 1");
+        //            Match match = Regex.Match(res, @"[^\n]*\n[^\n]*\n\s*(?<r>\d+)\s+(?<b>\d+)\s+(?<free>\d+)\s+(?<mapped>\d+)\s+(?<anon>\d+)\s+(?<slab>\d+)");
+        //            if (!match.Success)
+        //            {
+        //                throw new Exception("Parse vmstat failed");
+        //            }
                     
-                    deviceMemory.Add("System", new DeviceMemoryInfo (long.Parse(match.Groups["free"].Value))); 
-                }
-                catch
-                {
-                    useBusybox = false;
-                }
-            }
+        //            deviceMemory.Add("System", new DeviceMemoryInfo (long.Parse(match.Groups["free"].Value))); 
+        //        }
+        //        catch
+        //        {
+        //            useBusybox = false;
+        //        }
+        //    }
 
-            try
-            {
-                string res = ExcecuteCommandResult("df");
-                foreach (string line in res.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    if (line.StartsWith("/data"))
-                    {
-                        Match match = Regex.Match(line, @"\D*(?<size>[\d\.]+)(?<sizeUnit>[MKG])\s+(?<used>[\d\.]+)(?<usedUnit>[MKG])\s+(?<free>[\d\.]+)(?<freeUnit>[MKG])");
-                        if (match.Success)
-                        {
-                            deviceMemory.Add("Local", new DeviceMemoryInfo(
-                                GetSize(match, "size"),
-                                GetSize(match, "used"),
-                                GetSize(match, "free")));
-                        }
-                    }
-                    else if (line.StartsWith("/storage/sdcard0"))
-                    {
-                        Match match = Regex.Match(line, @"\D*(?<size>[\d\.]+)(?<sizeUnit>[MKG])\s+(?<used>[\d\.]+)(?<usedUnit>[MKG])\s+(?<free>[\d\.]+)(?<freeUnit>[MKG])");
-                        if (match.Success)
-                        {
-                            deviceMemory.Add("SDCard", new DeviceMemoryInfo(
-                                GetSize(match, "size"),
-                                GetSize(match, "used"),
-                                GetSize(match, "free")));
-                        }
-                    }
-                    else if (line.StartsWith("/storage/udisk"))
-                    {
-                        Match match = Regex.Match(line, @"\D*(?<size>[\d\.]+)(?<sizeUnit>[MKG])\s+(?<used>[\d\.]+)(?<usedUnit>[MKG])\s+(?<free>[\d\.]+)(?<freeUnit>[MKG])");
-                        if (match.Success)
-                        {
-                            deviceMemory.Add("USB", new DeviceMemoryInfo(
-                                GetSize(match, "size"),
-                                GetSize(match, "used"),
-                                GetSize(match, "free")));
-                        }
-                    }
-                } 
+        //    try
+        //    {
+        //        string res = ExcecuteCommandResult("df");
+        //        foreach (string line in res.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries))
+        //        {
+        //            if (line.StartsWith("/data"))
+        //            {
+        //                Match match = Regex.Match(line, @"\D*(?<size>[\d\.]+)(?<sizeUnit>[MKG])\s+(?<used>[\d\.]+)(?<usedUnit>[MKG])\s+(?<free>[\d\.]+)(?<freeUnit>[MKG])");
+        //                if (match.Success)
+        //                {
+        //                    deviceMemory.Add("Local", new DeviceMemoryInfo(
+        //                        GetSize(match, "size"),
+        //                        GetSize(match, "used"),
+        //                        GetSize(match, "free")));
+        //                }
+        //            }
+        //            else if (line.StartsWith("/storage/sdcard0"))
+        //            {
+        //                Match match = Regex.Match(line, @"\D*(?<size>[\d\.]+)(?<sizeUnit>[MKG])\s+(?<used>[\d\.]+)(?<usedUnit>[MKG])\s+(?<free>[\d\.]+)(?<freeUnit>[MKG])");
+        //                if (match.Success)
+        //                {
+        //                    deviceMemory.Add("SDCard", new DeviceMemoryInfo(
+        //                        GetSize(match, "size"),
+        //                        GetSize(match, "used"),
+        //                        GetSize(match, "free")));
+        //                }
+        //            }
+        //            else if (line.StartsWith("/storage/udisk"))
+        //            {
+        //                Match match = Regex.Match(line, @"\D*(?<size>[\d\.]+)(?<sizeUnit>[MKG])\s+(?<used>[\d\.]+)(?<usedUnit>[MKG])\s+(?<free>[\d\.]+)(?<freeUnit>[MKG])");
+        //                if (match.Success)
+        //                {
+        //                    deviceMemory.Add("USB", new DeviceMemoryInfo(
+        //                        GetSize(match, "size"),
+        //                        GetSize(match, "used"),
+        //                        GetSize(match, "free")));
+        //                }
+        //            }
+        //        } 
 
-            }
-            catch
-            { }
+        //    }
+        //    catch
+        //    { }
 
-            try
-            {
-                string res = ExcecuteCommandResult("dumpsys meminfo com.elektrobit.mobile.companion");
-                foreach (string line in res.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    if (line.Trim().StartsWith("Native Heap"))
-                    {
-                        Match match = Regex.Match(line, @"\D*\d+\s+\d+\s+\d+\s+\d+\s+(?<size>\d+)\s+(?<used>\d+)\s+(?<free>\d+)");
-                        if (match.Success)
-                        {
-                            deviceMemory.Add("AppNative", new DeviceMemoryInfo(
-                                long.Parse(match.Groups["size"].Value) * Kilo,
-                                long.Parse(match.Groups["used"].Value) * Kilo,
-                                long.Parse(match.Groups["free"].Value) * Kilo));
-                        }
-                    }
-                    else if (line.Trim().StartsWith("Dalvik Heap"))
-                    {
-                        Match match = Regex.Match(line, @"\D*\d+\s+\d+\s+\d+\s+\d+\s+(?<size>\d+)\s+(?<used>\d+)\s+(?<free>\d+)");
-                        if (match.Success)
-                        {
-                            deviceMemory.Add("AppDalvik", new DeviceMemoryInfo(
-                                long.Parse(match.Groups["size"].Value) * Kilo,
-                                long.Parse(match.Groups["used"].Value) * Kilo,
-                                long.Parse(match.Groups["free"].Value) * Kilo));
-                        }
-                    }
-                }
-            }
-            catch 
-            { }
-            return deviceMemory;
-        }
+        //    try
+        //    {
+        //        string res = ExcecuteCommandResult("dumpsys meminfo com.elektrobit.mobile.companion");
+        //        foreach (string line in res.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries))
+        //        {
+        //            if (line.Trim().StartsWith("Native Heap"))
+        //            {
+        //                Match match = Regex.Match(line, @"\D*\d+\s+\d+\s+\d+\s+\d+\s+(?<size>\d+)\s+(?<used>\d+)\s+(?<free>\d+)");
+        //                if (match.Success)
+        //                {
+        //                    deviceMemory.Add("AppNative", new DeviceMemoryInfo(
+        //                        long.Parse(match.Groups["size"].Value) * Kilo,
+        //                        long.Parse(match.Groups["used"].Value) * Kilo,
+        //                        long.Parse(match.Groups["free"].Value) * Kilo));
+        //                }
+        //            }
+        //            else if (line.Trim().StartsWith("Dalvik Heap"))
+        //            {
+        //                Match match = Regex.Match(line, @"\D*\d+\s+\d+\s+\d+\s+\d+\s+(?<size>\d+)\s+(?<used>\d+)\s+(?<free>\d+)");
+        //                if (match.Success)
+        //                {
+        //                    deviceMemory.Add("AppDalvik", new DeviceMemoryInfo(
+        //                        long.Parse(match.Groups["size"].Value) * Kilo,
+        //                        long.Parse(match.Groups["used"].Value) * Kilo,
+        //                        long.Parse(match.Groups["free"].Value) * Kilo));
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch 
+        //    { }
+        //    return deviceMemory;
+        //}
 
-        private long GetSize(Match match, string group)
-        {
-            string val = match.Groups[group].Value;
-            double num = double.Parse(val, new CultureInfo("en-US"));
-            string unit = match.Groups[group+"Unit"].Value;
-            switch (unit)
-            {
-            case "K": num = num * Kilo; break;
-            case "M": num = num * Mega; break;
-            case "G": num = num * Giga; break;
-            }
-            return (long)Math.Ceiling(num);
-        }
+        //private long GetSize(Match match, string group)
+        //{
+        //    string val = match.Groups[group].Value;
+        //    double num = double.Parse(val, new CultureInfo("en-US"));
+        //    string unit = match.Groups[group+"Unit"].Value;
+        //    switch (unit)
+        //    {
+        //    case "K": num = num * Kilo; break;
+        //    case "M": num = num * Mega; break;
+        //    case "G": num = num * Giga; break;
+        //    }
+        //    return (long)Math.Ceiling(num);
+        //}
         
         public void ExcecuteCommand(string cmd)
         {
@@ -353,14 +353,14 @@ namespace Devices.Adb
             return text;
         }
         
-        public bool FolderExist(string path)
-        {
-            using (SyncService service = new SyncService(this.deviceData))
-            {
-                FileStatistics fs = service.Stat(path);
-                return fs.FileMode != 0;
-            }
-        }
+        //public bool FolderExist(string path)
+        //{
+        //    using (SyncService service = new SyncService(this.deviceData))
+        //    {
+        //        FileStatistics fs = service.Stat(path);
+        //        return fs.FileMode != 0;
+        //    }
+        //}
 
 
         //private string RelPath(string path, string rootPath)
@@ -372,23 +372,23 @@ namespace Devices.Adb
         //    return path.Substring(rootPath.Length).TrimStart('/', '\\');
         //}
 
-        public bool Equals(IDevice other)
-        {
-            if (other.GetType() != typeof(AdbDevice))
-            {
-                return false;
-            }
-            return this.deviceData.Serial == (other as AdbDevice).deviceData.Serial;
-        }
+        //public bool Equals(IDevice other)
+        //{
+        //    if (other.GetType() != typeof(AdbDevice))
+        //    {
+        //        return false;
+        //    }
+        //    return this.deviceData.Serial == (other as AdbDevice).deviceData.Serial;
+        //}
 
-        public int CompareTo(IDevice other)
-        {
-            return this.Name.CompareTo(other.Name);
-        }
+        //public int CompareTo(IDevice other)
+        //{
+        //    return this.Name.CompareTo(other.Name);
+        //}
 
-        public void Reboot()
-        {
-            client.Reboot(this.deviceData);
-        }
+        //public void Reboot()
+        //{
+        //    client.Reboot(this.deviceData);
+        //}
     }
 }
