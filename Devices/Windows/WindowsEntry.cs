@@ -37,7 +37,20 @@ namespace Devices.Windows
             }
             set
             {
-                throw new NotSupportedException();
+                if (this.info.Attributes.HasFlag(FileAttributes.Device) || this.info.Attributes.HasFlag(FileAttributes.Directory))
+                {
+                    DirectoryInfo directoryInfo = this.info as DirectoryInfo;
+                    string newPath = Path.Combine(directoryInfo.Parent.FullName, value);
+                    directoryInfo.MoveTo(newPath);
+                    this.info = new DirectoryInfo(newPath);
+                }
+                else
+                {
+                    FileInfo fileInfo = this.info as FileInfo;
+                    string newPath = Path.Combine(fileInfo.Directory.FullName, value);
+                    fileInfo.MoveTo(newPath);
+                    this.info = new FileInfo(newPath);
+                }
             }
         }
 
@@ -48,7 +61,6 @@ namespace Devices.Windows
         public long Size { get { return this.info is FileInfo ? (this.info as FileInfo).Length : 0; } }
 
         public DateTime? Date { get { return this.info.LastWriteTime; } }
-
 
         public ExplorerItemType Type
         {
@@ -88,21 +100,38 @@ namespace Devices.Windows
             get { return this.Type == ExplorerItemType.Directory || this.Type == ExplorerItemType.Link; }
         }
 
-        public bool HasChildren { get; }
-
-        public IDevice Device
+        public bool HasChildren
         {
             get
             {
-                return (IDevice)this.device;
+                try
+                {
+                    var x = this.info as DirectoryInfo;
+                    return x?.EnumerateDirectories().Any() ?? false;
+                }
+                catch { }
+                return false;
             }
         }
+
+        //public IDevice Device
+        //{
+        //    get
+        //    {
+        //        return (IDevice)this.device;
+        //    }
+        //}
         
         public IEnumerable<IExplorerItem> Children
         {
             get
             {
-                return (this.info as DirectoryInfo)?.EnumerateFileSystemInfos().Select(e => new WindowsEntry(this.device, e));
+                try
+                {
+                    return (this.info as DirectoryInfo)?.EnumerateFileSystemInfos().Select(e => new WindowsEntry(this.device, e));
+                }
+                catch { }
+                return null;
             }
         }
         
@@ -118,16 +147,20 @@ namespace Devices.Windows
 
         public void CreateFolder(string folderName)
         {
-            throw new NotSupportedException();
+            if (this.info.Attributes.HasFlag(FileAttributes.Device) || this.info.Attributes.HasFlag(FileAttributes.Directory))
+            {
+                DirectoryInfo directoryInfo = this.info as DirectoryInfo;
+                directoryInfo.CreateSubdirectory(folderName);
+            }
         }
 
         #endregion
 
         #region IEntry
 
-        public bool CanCreateFolder { get { return false; } }
+        public bool CanCreateFolder { get { return true; } }
         public bool CanCreateLink { get { return false; } }
-        public bool CanDelete { get { return false; } }
+        public bool CanDelete { get { return true; } }
         
         public void CreateLink(string linkName, string linkPath)
         {

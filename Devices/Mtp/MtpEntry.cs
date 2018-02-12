@@ -28,8 +28,24 @@ namespace Devices.Mtp
 
         public string Name
         {
-            get { return this.entry.Name; }
-            set { }
+            get
+            {
+                return this.entry.Name;
+            }
+            set
+            {
+                if (this.IsDirectory)
+                {
+                    MediaDirectoryInfo fileInfo = this.entry as MediaDirectoryInfo;
+                    //fileInfo.MoveTo("xx");
+                }
+                else
+                {
+                    MediaFileInfo fileInfo = this.entry as MediaFileInfo;
+                    //fileInfo.MoveTo("xx");
+                }
+
+            }
         }
        
         public string FullName
