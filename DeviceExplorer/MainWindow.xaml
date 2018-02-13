@@ -5,21 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeviceExplorer"
         mc:Ignorable="d"
-        Title="Device Explorer" Height="800" Width="1400" Icon="/DeviceExplorer;component/cellphone.ico">
+        Title="Device Explorer" Height="800" Width="1400" Icon="/DeviceExplorer;component/cellphone.ico" >
     <Window.Resources>
-        <ContextMenu x:Key="folderContextMenu">
+        <ContextMenu x:Key="itemContextMenu" Opened="OnItemContextOpened" >
             <MenuItem Header="Delete" Click="OnDelete" IsEnabled="{Binding CanDelete}" />
-            <Separator/>
-            <MenuItem Header="New Folder" Click="OnCreateFolder" IsEnabled="{Binding CanCreateFolder}" />
-            <MenuItem Header="New Link" Click="OnCreateLink" IsEnabled="{Binding CanCreateLink}"/>
+            <MenuItem Header="Rename" Click="OnRename" IsEnabled="{Binding CanRename}" />
         </ContextMenu>
-        <ContextMenu x:Key="fileContextMenu">
-            <MenuItem Header="Delete" Click="OnDelete" IsEnabled="{Binding CanDelete}" />
-        </ContextMenu>
-        <ContextMenu x:Key="listContextMenu">
+        <ContextMenu x:Key="listContextMenu" Opened="OnListContextOpened" >
             <MenuItem Header="New Folder" Click="OnCreateFolder" IsEnabled="{Binding CanCreateFolder}" />
             <MenuItem Header="New Link" Click="OnCreateLink" IsEnabled="{Binding CanCreateLink}" />
-            <MenuItem Header="Delete" Click="OnDelete" IsEnabled="{Binding CanDelete}" />
         </ContextMenu>
     </Window.Resources>
     <DockPanel>
@@ -70,8 +64,7 @@
             </Grid.RowDefinitions>
             <TextBox Grid.Row="0" x:Name="pathTextBox" IsReadOnly="True" Margin="3"/>
             <Explorer Grid.Row="1" x:Name="explorer" Margin="3,0,3,0"
-                FolderContextMenu="{StaticResource folderContextMenu}"
-                FileContextMenu="{StaticResource fileContextMenu}"
+                ItemContextMenu="{StaticResource itemContextMenu}"
                 ListContextMenu="{StaticResource listContextMenu}">
             </Explorer>
         </Grid>

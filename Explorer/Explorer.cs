@@ -192,35 +192,20 @@ namespace ExplorerCtrl
         }
 
         /// <summary>
-        /// Dependency property for FolderContextMenu
+        /// Dependency property for ItemContextMenu
         /// </summary>
-        public static readonly DependencyProperty FolderContextMenuProperty =
-            DependencyProperty.Register("FolderContextMenu", typeof(ContextMenu), typeof(Explorer), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty ItemContextMenuProperty =
+            DependencyProperty.Register("ItemContextMenu", typeof(ContextMenu), typeof(Explorer), new FrameworkPropertyMetadata(null));
 
         /// <summary>
         /// Set the folder context menu.
         /// </summary>
-        public ContextMenu FolderContextMenu
+        public ContextMenu ItemContextMenu
         {
-            get { return (ContextMenu)GetValue(FolderContextMenuProperty); }
-            set { SetValue(FolderContextMenuProperty, value); }
+            get { return (ContextMenu)GetValue(ItemContextMenuProperty); }
+            set { SetValue(ItemContextMenuProperty, value); }
         }
-
-        /// <summary>
-        /// Dependency property for FileContextMenu
-        /// </summary>
-        public static readonly DependencyProperty FileContextMenuProperty =
-            DependencyProperty.Register("FileContextMenu", typeof(ContextMenu), typeof(Explorer), new FrameworkPropertyMetadata(null));
-
-        /// <summary>
-        /// Set the filer context menu.
-        /// </summary>
-        public ContextMenu FileContextMenu
-        {
-            get { return (ContextMenu)GetValue(FileContextMenuProperty); }
-            set { SetValue(FileContextMenuProperty, value); }
-        }
-
+        
         /// <summary>
         /// Dependency property for ListContextMenu
         /// </summary>

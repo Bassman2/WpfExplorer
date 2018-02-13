@@ -10,24 +10,13 @@
         <vm:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <ContextMenu x:Key="folderContextMenu">
+        <ContextMenu x:Key="itemContextMenu">
             <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
-            <Separator/>
-            <MenuItem Header="New Folder" Command="{Binding NewFolderCommand}" />
-            <MenuItem Header="New Link" Command="{Binding NewLinkCommand}" />
-            <Separator/>
-            <MenuItem Header="Properties" Command="{Binding PropertiesCommand}" />
-        </ContextMenu>
-        <ContextMenu x:Key="fileContextMenu">
-            <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
-            <Separator/>
-            <MenuItem Header="Properties" Command="{Binding PropertiesCommand}" />
+            <MenuItem Header="Rename" Command="{Binding RenameCommand}" />
         </ContextMenu>
         <ContextMenu x:Key="listContextMenu">
             <MenuItem Header="New Folder" Command="{Binding SelectedItem.NewFolderCommand}" />
             <MenuItem Header="New Link" Command="{Binding SelectedItem.NewLinkCommand}" />
-            <Separator/>
-            <MenuItem Header="Properties" Command="{Binding SelectedItem.PropertiesCommand}" />
         </ContextMenu>
     </Window.Resources>
     <DockPanel>
@@ -86,8 +75,7 @@
             <!--<ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" ToolTip="Select Device" Margin="3,3,0,3" />-->
             <TextBox Grid.Row="0" Text="{Binding SelectedFolder.FullName, Mode=OneWay}" IsReadOnly="True" Margin="3" ToolTip="Current Path"/>
             <Explorer Grid.Row="1" ItemsSource="{Binding RootFolders}" SelectedValue="{Binding SelectedFolder}" Margin="3,0,3,0"
-                FolderContextMenu="{StaticResource folderContextMenu}"
-                FileContextMenu="{StaticResource fileContextMenu}"
+                ItemContextMenu="{StaticResource itemContextMenu}"
                 ListContextMenu="{StaticResource listContextMenu}">
             </Explorer>
         </Grid>

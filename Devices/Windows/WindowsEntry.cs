@@ -161,13 +161,20 @@ namespace Devices.Windows
         public bool CanCreateFolder { get { return true; } }
         public bool CanCreateLink { get { return false; } }
         public bool CanDelete { get { return true; } }
-        
+
+        public bool CanRename { get { return true; } }
+
         public void CreateLink(string linkName, string linkPath)
         {
             throw new NotSupportedException();
         }
 
         public void Delete()
+        {
+            throw new NotSupportedException();
+        }
+
+        public void Rename(string newName)
         {
             throw new NotSupportedException();
         }

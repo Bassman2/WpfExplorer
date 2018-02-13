@@ -161,6 +161,7 @@ namespace Devices.Mtp
         public bool CanDelete { get { return true; } }
         public bool CanCreateFolder { get { return this.IsDirectory; } }
         public bool CanCreateLink { get { return false; } }
+        public bool CanRename { get { return true; } }
 
         public void CreateLink(string linkName, string linkPath)
         {
@@ -177,6 +178,11 @@ namespace Devices.Mtp
             {
                 this.device.device.DeleteFile(this.FullName);
             }
+        }
+
+        public void Rename(string newName)
+        {
+            throw new NotSupportedException();
         }
 
         #endregion

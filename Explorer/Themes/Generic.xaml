@@ -28,7 +28,7 @@
                             <TreeView.ItemTemplate>
                                 <HierarchicalDataTemplate ItemsSource="{Binding Folders, Converter={StaticResource DebugConverter}}">
                                     <StackPanel Orientation="Horizontal" 
-                                        ContextMenu="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Explorer}}, Path=FolderContextMenu}" 
+                                        ContextMenu="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Explorer}}, Path=ItemContextMenu}" 
                                         ToolTip="{Binding FullName}" Margin="2">
                                         <Image Source="{Binding Icon}" Width="16" Height="16" Margin="0,0,3,0"/>
                                         <TextBlock Text="{Binding Name}" />
@@ -58,7 +58,7 @@
                                 <DataGridTemplateColumn Header="Name" Width="300" IsReadOnly="True" CanUserSort="True" SortMemberPath="Name" >
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" ContextMenu="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Explorer}}, Path=FileContextMenu}" > 
+                                            <StackPanel Orientation="Horizontal" ContextMenu="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Explorer}}, Path=ItemContextMenu}" > 
                                                 <Image Source="{Binding Icon}" Width="16" Height="16" Margin="0,0,3,0"/>
                                                 <TextBlock Text="{Binding Name}"/>
                                             </StackPanel>

@@ -129,7 +129,8 @@ namespace Devices.Terminal
         public bool CanCreateFolder { get { return true; } }
         public bool CanCreateLink { get { return this.IsDirectory; } }
         public bool CanDelete { get { return false; } }
-               
+        public bool CanRename { get { return true; } }
+
         public void CreateLink(string linkName, string linkPath)
         {
             throw new NotSupportedException();
@@ -140,6 +141,10 @@ namespace Devices.Terminal
             throw new NotSupportedException();
         }
 
+        public void Rename(string newName)
+        {
+            throw new NotSupportedException();
+        }
         #endregion
     }
 }

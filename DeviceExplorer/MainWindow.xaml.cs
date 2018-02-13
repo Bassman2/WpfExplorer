@@ -83,6 +83,17 @@ namespace DeviceExplorer
             }
         }
 
+        private void OnRename(object sender, RoutedEventArgs e)
+        {
+            ExplorerItem expItem = ((MenuItem)sender).DataContext as ExplorerItem;
+            IExplorerItem item = expItem?.Content;
+            IEntry entry = item as IEntry;
+            //if (entry != null)
+            //{
+            //    entry.Delete();
+            //}
+        }
+
         private void OnCreateFolder(object sender, RoutedEventArgs e)
         {
             ExplorerItem expItem = ((MenuItem)sender).DataContext as ExplorerItem;
@@ -104,5 +115,19 @@ namespace DeviceExplorer
                 entry.CreateLink("NewLink", "xxx");
             }
         }
+
+        private void OnItemContextOpened(object sender, RoutedEventArgs e)
+        {
+            ContextMenu menu = sender as ContextMenu;
+            var o = menu.DataContext;
+        }
+
+        private void OnListContextOpened(object sender, RoutedEventArgs e)
+        {
+            ContextMenu menu = sender as ContextMenu;
+            var o = menu.DataContext;
+        }
+
+
     }
 }

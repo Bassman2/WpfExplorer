@@ -175,7 +175,9 @@ namespace Devices.Adb
 
         public bool CanDelete { get { return true; } }
         public bool CanCreateFolder { get { return this.IsDirectory; } }
-        public bool CanCreateLink { get { return this.IsDirectory; ; } }
+        public bool CanCreateLink { get { return this.IsDirectory;  } }
+
+        public bool CanRename { get { return true; } }
 
         public void CreateLink(string linkName, string linkPath)
         {
@@ -186,6 +188,11 @@ namespace Devices.Adb
         public void Delete()
         {
             this.device.ExcecuteCommand($"rm -r {this.FullName}");
+        }
+
+        public void Rename(string newName)
+        {
+            
         }
 
         #endregion

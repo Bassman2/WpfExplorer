@@ -18,7 +18,12 @@ namespace Devices
         /// Enable delete in property menu if true
         /// </summary>
         bool CanDelete { get; }
-        
+
+        /// <summary>
+        /// Enable rename in property menu if true
+        /// </summary>
+        bool CanRename { get; }
+
         /// <summary>
         /// Create a new link
         /// </summary>
@@ -30,5 +35,11 @@ namespace Devices
         /// Delete this item
         /// </summary>
         void Delete();
+
+        /// <summary>
+        /// Rename this item
+        /// </summary>
+        /// <param name="newName">New name of the item</param>
+        void Rename(string newName);
     }
 }
