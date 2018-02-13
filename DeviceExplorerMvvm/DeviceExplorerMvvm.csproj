@@ -67,10 +67,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\DebugConverter.cs" />
-    <Compile Include="Converter\RadioButtonConverter.cs" />
-    <Compile Include="Misc\MemoryData.cs" />
-    <Compile Include="Misc\ObservableCollectionExtensions.cs" />
     <Compile Include="Mvvm\BaseViewModel.cs" />
     <Compile Include="Mvvm\DelegateCommand.cs" />
     <Compile Include="Mvvm\DialogButtonsView.xaml.cs">
@@ -172,9 +168,7 @@
     <Resource Include="Images\Shell.png" />
     <Resource Include="Images\Studio.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>$(OutDir)adb kill-server
