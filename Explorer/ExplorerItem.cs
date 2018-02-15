@@ -142,6 +142,7 @@ namespace ExplorerCtrl
                 explorerItem.Refresh(false);
             }
         }
+
         private static void OnIsSelectedInListChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
 

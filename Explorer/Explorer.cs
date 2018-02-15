@@ -244,6 +244,40 @@ namespace ExplorerCtrl
             explorer.OnSelectedPathChanged(newValue);
         }
 
+        /// <summary>
+        /// Dependency property for DirectorySeparatorChars
+        /// </summary>
+        public static readonly DependencyProperty DirectorySeparatorCharsProperty =
+            DependencyProperty.Register("DirectorySeparatorChars", typeof(string), typeof(Explorer), new FrameworkPropertyMetadata(@"\/"));
+
+
+        /// <summary>
+        /// Get and set the directory separator chars. Default is '\' and '/'
+        /// </summary>
+        public string DirectorySeparatorChars
+        {
+            get { return (string)GetValue(DirectorySeparatorCharsProperty); }
+            set { SetValue(DirectorySeparatorCharsProperty, value); }
+        }
+
+
+
+        /// <summary>
+        /// Dependency property for IsCaseSensitive
+        /// </summary>
+        public static readonly DependencyProperty IsCaseSensitiveProperty =
+            DependencyProperty.Register("IsCaseSensitive", typeof(bool), typeof(Explorer), new FrameworkPropertyMetadata(false));
+
+
+        /// <summary>
+        /// Get and set if the folder compare is case sensitive or not
+        /// </summary>
+        public bool IsCaseSensitive
+        {
+            get { return (bool)GetValue(IsCaseSensitiveProperty); }
+            set { SetValue(IsCaseSensitiveProperty, value); }
+        }
+
         #endregion
 
         #region internal Dependency Properties
@@ -263,6 +297,11 @@ namespace ExplorerCtrl
         private void OnSelectedFolderChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             ExplorerItem item = e.NewValue as ExplorerItem;
+            SelectItem(item);
+        }
+
+        private void SelectItem(ExplorerItem item)
+        {
             this.SelectedItem = item;
             this.selectedItem = item; // to use from working thread
             this.SelectedValue = item?.Content;
@@ -458,9 +497,28 @@ namespace ExplorerCtrl
             // check if changed from outside
             if (!string.IsNullOrEmpty(newPath) && newPath != this.selectedItem?.FullName)
             {
+                IEnumerable<ExplorerItem> items = this.InternalItemsSource;
+                ExplorerItem item = null;
+                char[] separators = this.DirectorySeparatorChars.ToArray();
 
-                Window main = Application.Current.MainWindow;
-                MessageBox.Show(main, $"Can't find '{newPath}'. Check the spelling and try again.", main.Title, MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.None);
+                string[] folders = newPath.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var folder in folders)
+                {
+                    item = items.Where(i => string.Equals(i.Name.Trim(separators), folder, this.IsCaseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+                    if (item != null)
+                    {
+                        item.IsExpanded = true;
+                        items = item.Children;
+                    }
+                    else
+                    {
+                        Window main = Application.Current.MainWindow;
+                        MessageBox.Show(main, $"Can't find '{newPath}'. Check the spelling and try again.", main.Title, MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.None);
+                        return;
+                    }
+                }
+                SelectItem(item);
+                item.IsSelectedInTree = true;
             }
         }
 
