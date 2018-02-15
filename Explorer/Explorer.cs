@@ -221,6 +221,29 @@ namespace ExplorerCtrl
             set { SetValue(ListContextMenuProperty, value); }
         }
 
+        /// <summary>
+        /// Dependency property for SelectedPath
+        /// </summary>
+        public static readonly DependencyProperty SelectedPathProperty =
+            DependencyProperty.Register("SelectedPath", typeof(string), typeof(Explorer), new FrameworkPropertyMetadata(null, OnSelectedPathChanged));
+
+
+        /// <summary>
+        /// Get and set the selected path
+        /// </summary>
+        public string SelectedPath
+        {
+            get { return (string)GetValue(SelectedPathProperty); }
+            set { SetValue(SelectedPathProperty, value); }
+        }
+
+        private static void OnSelectedPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Explorer explorer = (Explorer)d;
+            string newValue = (string)e.NewValue;
+            explorer.OnSelectedPathChanged(newValue);
+        }
+
         #endregion
 
         #region internal Dependency Properties
@@ -244,6 +267,7 @@ namespace ExplorerCtrl
             this.selectedItem = item; // to use from working thread
             this.SelectedValue = item?.Content;
             this.ListItems = item?.Files;
+            this.SelectedPath = item.FullName;
         }
 
         private void OnClick(object sender, MouseButtonEventArgs e)
@@ -426,6 +450,17 @@ namespace ExplorerCtrl
                 VirtualFileDataObject.DoDragDrop(dataGrid, virtualFileDataObject, DragDropEffects.Copy);
                 
                 this.isMouseDown = false;
+            }
+        }
+
+        private void OnSelectedPathChanged(string newPath)
+        {
+            // check if changed from outside
+            if (!string.IsNullOrEmpty(newPath) && newPath != this.selectedItem?.FullName)
+            {
+
+                Window main = Application.Current.MainWindow;
+                MessageBox.Show(main, $"Can't find '{newPath}'. Check the spelling and try again.", main.Title, MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.None);
             }
         }
 

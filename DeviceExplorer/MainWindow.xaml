@@ -62,11 +62,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" x:Name="pathTextBox" IsReadOnly="True" Margin="3"/>
+            <TextBox Grid.Row="0" x:Name="pathTextBox" Margin="3"
+                Text="{Binding ElementName=explorer, Path=SelectedPath, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                local:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" />
             <Explorer Grid.Row="1" x:Name="explorer" Margin="3,0,3,0"
                 ItemContextMenu="{StaticResource itemContextMenu}"
-                ListContextMenu="{StaticResource listContextMenu}">
-            </Explorer>
+                ListContextMenu="{StaticResource listContextMenu}" />
         </Grid>
     </DockPanel>
 </UsbMonitorWindow>
