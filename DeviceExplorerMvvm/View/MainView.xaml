@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:DeviceExplorer.ViewModel"
+        xmlns:local="clr-namespace:DeviceExplorer"
         mc:Ignorable="d"
         Height="800" Width="1400" Icon="/DeviceExplorer;component/cellphone.ico">
     <Window.DataContext>
@@ -66,15 +67,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <!--<RowDefinition Height="6" />
-                <RowDefinition Height="200" />-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--<ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" DisplayMemberPath="Name" IsEditable="True" IsReadOnly="True" ToolTip="Select Device" Margin="3,3,0,3" />-->
-            <TextBox Grid.Row="0" Text="{Binding SelectedFolder.FullName, Mode=OneWay}" IsReadOnly="True" Margin="3" ToolTip="Current Path"/>
+            <TextBox Grid.Row="0" Margin="3" ToolTip="Current Path"
+                Text="{Binding SelectedPath, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                local:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" />
             <Explorer Grid.Row="1" ItemsSource="{Binding RootFolders}" SelectedValue="{Binding SelectedFolder}" Margin="3,0,3,0"
+                SelectedPath="{Binding SelectedPath, Mode=TwoWay}"      
                 ItemContextMenu="{StaticResource itemContextMenu}"
                 ListContextMenu="{StaticResource listContextMenu}">
             </Explorer>

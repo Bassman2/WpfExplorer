@@ -1,14 +1,9 @@
-﻿using DeviceExplorer.View;
+using DeviceExplorer.View;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
-namespace DeviceExplorerMvvm
+namespace DeviceExplorer
 {
     /// <summary>
     /// Interaction logic for App.xaml

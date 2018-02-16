@@ -1,4 +1,4 @@
-﻿using DeviceExplorer.Mvvm;
+using DeviceExplorer.Mvvm;
 using Devices;
 using ExplorerCtrl;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ namespace DeviceExplorer.ViewModel
         private IDevice selectedDevice;
         private IEnumerable<IExplorerItem> rootFolders;
         private IExplorerItem selectedFolder;
+        private string selectedPath;
 
         public MainViewModel()
         {
@@ -93,6 +94,19 @@ namespace DeviceExplorer.ViewModel
             {
                 this.selectedFolder = value;
                 NotifyPropertyChanged(nameof(SelectedFolder));
+            }
+        }
+
+        public string SelectedPath
+        {
+            get
+            {
+                return this.selectedPath;
+            }
+            set
+            {
+                this.selectedPath = value;
+                NotifyPropertyChanged(nameof(SelectedPath));
             }
         }
 
