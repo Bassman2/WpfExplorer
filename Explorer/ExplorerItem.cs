@@ -1,4 +1,4 @@
-﻿using ExplorerCtrl.Internal;
+using ExplorerCtrl.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,25 +11,28 @@ using System.Windows.Media;
 
 namespace ExplorerCtrl
 {
+    /// <summary>
+    /// Explorer Item class
+    /// </summary>
     [DebuggerDisplay("{Type} - {FullName}")]
     public class ExplorerItem : DependencyObject//, IEquatable<ExplorerItem>
     {
-        public static readonly DependencyProperty NameProperty;
-        public static readonly DependencyProperty FullNameProperty;
-        public static readonly DependencyProperty LinkProperty;
-        public static readonly DependencyProperty SizeProperty;
-        public static readonly DependencyProperty DateProperty;
-        public static readonly DependencyProperty TypeProperty;
-        public static readonly DependencyProperty IconProperty;
-        public static readonly DependencyProperty IsDirectoryProperty;
-        public static readonly DependencyProperty ChildrenProperty;
-        public static readonly DependencyProperty FoldersProperty;
-        public static readonly DependencyProperty FilesProperty;
-        public static readonly DependencyProperty FilesCountProperty;
-        public static readonly DependencyProperty IsExpandedProperty;
-        public static readonly DependencyProperty IsSelectedInTreeProperty;
-        public static readonly DependencyProperty IsSelectedInListProperty;
-        public static readonly DependencyProperty ContentProperty;
+        internal static readonly DependencyProperty NameProperty;
+        internal static readonly DependencyProperty FullNameProperty;
+        internal static readonly DependencyProperty LinkProperty;
+        internal static readonly DependencyProperty SizeProperty;
+        internal static readonly DependencyProperty DateProperty;
+        internal static readonly DependencyProperty TypeProperty;
+        internal static readonly DependencyProperty IconProperty;
+        internal static readonly DependencyProperty IsDirectoryProperty;
+        internal static readonly DependencyProperty ChildrenProperty;
+        internal static readonly DependencyProperty FoldersProperty;
+        internal static readonly DependencyProperty FilesProperty;
+        internal static readonly DependencyProperty FilesCountProperty;
+        internal static readonly DependencyProperty IsExpandedProperty;
+        internal static readonly DependencyProperty IsSelectedInTreeProperty;
+        internal static readonly DependencyProperty IsSelectedInListProperty;
+        internal static readonly DependencyProperty ContentProperty;
 
         static ExplorerItem()
         {
@@ -51,72 +54,108 @@ namespace ExplorerCtrl
             ContentProperty = DependencyProperty.Register("Content", typeof(IExplorerItem), typeof(ExplorerItem), new FrameworkPropertyMetadata(null));
         }
 
+        /// <summary>
+        /// Name of the item.
+        /// </summary>
         public string Name
         {
             get { return (string)GetValue(NameProperty); }
             set { SetValue(NameProperty, value); }
         }
 
+        /// <summary>
+        /// Full name of the item.
+        /// </summary>
         public string FullName
         {
             get { return (string)GetValue(FullNameProperty); }
             set { SetValue(FullNameProperty, value); }
         }
 
+        /// <summary>
+        /// Type of the item.
+        /// </summary>
         public ExplorerItemType Type
         {
             get { return (ExplorerItemType)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
 
+        /// <summary>
+        /// Size of the item in bytes
+        /// </summary>
         public long Size
         {
             get { return (long)GetValue(SizeProperty); }
             set { SetValue(SizeProperty, value); }
         }
 
+        /// <summary>
+        /// True if item is a directory; false if not
+        /// </summary>
         public bool IsDirectory
         {
             get { return (bool)GetValue(IsDirectoryProperty); }
             set { SetValue(IsDirectoryProperty, value); }
         }
 
+        /// <summary>
+        /// Get the children of the directory
+        /// </summary>
         public IEnumerable<ExplorerItem> Children
         {
             get { return (IEnumerable<ExplorerItem>)GetValue(ChildrenProperty); }
             set { SetValue(ChildrenProperty, value); }
         }
 
+        /// <summary>
+        /// Get the children folders of the directory
+        /// </summary>
         public ICollectionView Folders
         {
             get { return (ICollectionView)GetValue(FoldersProperty); }
             set { SetValue(FoldersProperty, value); }
         }
 
+        /// <summary>
+        /// Get the children files of the directory
+        /// </summary>
         public ICollectionView Files
         {
             get { return (ICollectionView)GetValue(FilesProperty); }
             set { SetValue(FilesProperty, value); }
         }
 
+        /// <summary>
+        /// Get the content of the item
+        /// </summary>
         public IExplorerItem Content
         {
             get { return (IExplorerItem)GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
         }
 
+        /// <summary>
+        /// True if the item is expanded in the tree control; false if not
+        /// </summary>
         internal bool IsExpanded
         {
             get { return (bool)GetValue(IsExpandedProperty); }
             set { SetValue(IsExpandedProperty, value); }
         }
 
+        /// <summary>
+        /// True if the item is selected in the tree control; false if not
+        /// </summary>
         internal bool IsSelectedInTree
         {
             get { return (bool)GetValue(IsSelectedInTreeProperty); }
             set { SetValue(IsSelectedInTreeProperty, value); }
         }
 
+        /// <summary>
+        /// True if the item is selected in the list control; false if not
+        /// </summary>
         internal bool IsSelectedInList
         {
             get { return (bool)GetValue(IsSelectedInListProperty); }

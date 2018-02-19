@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0.0-beta1</version>
+    <title>$title$</title>
+    <authors>Ralf Beckers</authors>
+    <owners>Ralf Beckers</owners>
+	<projectUrl>https://github.com/Bassman2/WpfExplorer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Explorer like WPF control useable for FTP, MTP, ADB etc. with drag and drop to the Windows Explorer.</description>
+    <releaseNotes>Creation</releaseNotes>
+    <copyright>Copyright 2018 by Ralf Beckers</copyright>
+    <tags>WPF Explorer Control FTP MTP ADB WPD</tags>
+	<dependencies>
+      <group targetFramework=".NETFramework4.5" />
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="ExplorerLicense.txt" target="content" />
+    <file src="..\ExplorerDoc\Help\MediaDevices.chm" target="content" />
+  </files>
+</package>
