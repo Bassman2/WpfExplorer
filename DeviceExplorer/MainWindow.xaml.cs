@@ -1,11 +1,11 @@
-﻿using Devices;
+using Devices;
 using ExplorerCtrl;
 using ExplorerCtrl.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using WpfUsbMonitor;
+using UsbMonitor;
 
 namespace DeviceExplorer
 {
@@ -40,7 +40,7 @@ namespace DeviceExplorer
             RefreshDevice();
         }
 
-        protected override void OnUsbChanged()
+        public override void OnUsbChanged(UsbEventArgs args)
         {
             RefreshDevice();
         }

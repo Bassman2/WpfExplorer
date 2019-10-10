@@ -67,8 +67,8 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WpfUsbMonitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WpfUsbMonitor.1.0.0\lib\net45\WpfUsbMonitor.dll</HintPath>
+    <Reference Include="WpfUsbMonitor, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfUsbMonitor.2.0.0\lib\net45\WpfUsbMonitor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
