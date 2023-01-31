@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>Explorer</AssemblyName>
     <RootNamespace>ExplorerCtrl</RootNamespace>
@@ -16,10 +16,6 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Bassman.snk</AssemblyOriginatorKeyFile>
     <Nullable>disable</Nullable>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Explorer.xml</DocumentationFile>
   </PropertyGroup>
 
   <Import Project="..\ExplorerShare\ExplorerShare.projitems" Label="Shared" />

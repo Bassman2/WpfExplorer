@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.223
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceExplorer", "DeviceExplorer\DeviceExplorer.csproj", "{8FBF110F-73AD-4139-9A34-1B7D55E4CD69}"
 EndProject
@@ -29,13 +29,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DeviceExplorerShare", "Demo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{566F3008-CDEC-40E3-8F26-B385855D6F8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceExplorer50", "Demo\DeviceExplorer50\DeviceExplorer50.csproj", "{03850822-B29F-486B-999D-A0635563567C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceExplorer50", "Demo\DeviceExplorer50\DeviceExplorer50.csproj", "{03850822-B29F-486B-999D-A0635563567C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceExplorerMvvm50", "Demo\DeviceExplorerMvvm50\DeviceExplorerMvvm50.csproj", "{39DFF2A1-0882-45D1-8222-C63B642F1656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceExplorerMvvm50", "Demo\DeviceExplorerMvvm50\DeviceExplorerMvvm50.csproj", "{39DFF2A1-0882-45D1-8222-C63B642F1656}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devices50", "Demo\Devices50\Devices50.csproj", "{3FF07DF7-D91C-40C6-83A5-EB4934036883}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerFramework45", "Src\ExplorerFramework45\ExplorerFramework45.csproj", "{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Devices50", "Demo\Devices50\Devices50.csproj", "{3FF07DF7-D91C-40C6-83A5-EB4934036883}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesFramework45", "Demo\DevicesFramework45\DevicesFramework45.csproj", "{31D67138-33F1-47B3-A488-2F60968FE3F5}"
 EndProject
@@ -43,21 +41,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesExplorerFramework45"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesExplorerMvvmFramework45", "Demo\DevicesExplorerMvvmFramework45\DevicesExplorerMvvmFramework45.csproj", "{4B888E4D-C21A-483F-A618-7F2E99D92959}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer60", "Src\Explorer60\Explorer60.csproj", "{A1C06FEC-5889-4933-A9D0-8D6946545C51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer70", "Src\Explorer70\Explorer70.csproj", "{DC1E0C26-52ED-4602-B1C7-C8F4A423C9F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer48", "Src\Explorer48\Explorer48.csproj", "{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}"
+EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Demo\DeviceExplorerShare\DeviceExplorerShare.projitems*{03850822-b29f-486b-999d-a0635563567c}*SharedItemsImports = 5
-		Demo\DevicesShare\DevicesShare.projitems*{31d67138-33f1-47b3-a488-2f60968fe3f5}*SharedItemsImports = 4
-		Demo\DeviceExplorerMvvmShare\DeviceExplorerMvvmShare.projitems*{39dff2a1-0882-45d1-8222-c63b642f1656}*SharedItemsImports = 5
-		Demo\DevicesShare\DevicesShare.projitems*{3ff07df7-d91c-40c6-83a5-eb4934036883}*SharedItemsImports = 5
-		Demo\DeviceExplorerMvvmShare\DeviceExplorerMvvmShare.projitems*{4b888e4d-c21a-483f-a618-7f2e99d92959}*SharedItemsImports = 4
-		Src\ExplorerShare\ExplorerShare.projitems*{5d3565b1-9a81-43bf-9e87-d3b1c06bf52b}*SharedItemsImports = 13
-		Demo\DeviceExplorerShare\DeviceExplorerShare.projitems*{9ecbf37d-3257-4dba-a80e-0fa753467417}*SharedItemsImports = 13
-		Src\ExplorerShare\ExplorerShare.projitems*{c0cb4896-445d-40a1-b0f1-8450fdf9fb5f}*SharedItemsImports = 4
-		Demo\DeviceExplorerMvvmShare\DeviceExplorerMvvmShare.projitems*{d1f95152-c333-4266-8913-a7e694c47360}*SharedItemsImports = 13
-		Demo\DeviceExplorerShare\DeviceExplorerShare.projitems*{d57a2407-a1c1-402f-ac52-b7054a4361b2}*SharedItemsImports = 4
-		Src\ExplorerShare\ExplorerShare.projitems*{e79e41ee-1de1-42f7-a80c-0f3d0e668617}*SharedItemsImports = 5
-		Demo\DevicesShare\DevicesShare.projitems*{f35adab3-f2f8-4123-835d-cb007424969d}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -94,10 +84,6 @@ Global
 		{3FF07DF7-D91C-40C6-83A5-EB4934036883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF07DF7-D91C-40C6-83A5-EB4934036883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF07DF7-D91C-40C6-83A5-EB4934036883}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31D67138-33F1-47B3-A488-2F60968FE3F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31D67138-33F1-47B3-A488-2F60968FE3F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31D67138-33F1-47B3-A488-2F60968FE3F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -110,6 +96,18 @@ Global
 		{4B888E4D-C21A-483F-A618-7F2E99D92959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B888E4D-C21A-483F-A618-7F2E99D92959}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B888E4D-C21A-483F-A618-7F2E99D92959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C06FEC-5889-4933-A9D0-8D6946545C51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C06FEC-5889-4933-A9D0-8D6946545C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C06FEC-5889-4933-A9D0-8D6946545C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C06FEC-5889-4933-A9D0-8D6946545C51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC1E0C26-52ED-4602-B1C7-C8F4A423C9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC1E0C26-52ED-4602-B1C7-C8F4A423C9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC1E0C26-52ED-4602-B1C7-C8F4A423C9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC1E0C26-52ED-4602-B1C7-C8F4A423C9F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,12 +126,30 @@ Global
 		{03850822-B29F-486B-999D-A0635563567C} = {509D0660-8C73-4861-89BF-C96D6D7B6B5B}
 		{39DFF2A1-0882-45D1-8222-C63B642F1656} = {509D0660-8C73-4861-89BF-C96D6D7B6B5B}
 		{3FF07DF7-D91C-40C6-83A5-EB4934036883} = {509D0660-8C73-4861-89BF-C96D6D7B6B5B}
-		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F} = {D3CBA760-1DE8-4C43-988C-EE370FA5F38A}
 		{31D67138-33F1-47B3-A488-2F60968FE3F5} = {509D0660-8C73-4861-89BF-C96D6D7B6B5B}
 		{D57A2407-A1C1-402F-AC52-B7054A4361B2} = {509D0660-8C73-4861-89BF-C96D6D7B6B5B}
 		{4B888E4D-C21A-483F-A618-7F2E99D92959} = {509D0660-8C73-4861-89BF-C96D6D7B6B5B}
+		{A1C06FEC-5889-4933-A9D0-8D6946545C51} = {D3CBA760-1DE8-4C43-988C-EE370FA5F38A}
+		{DC1E0C26-52ED-4602-B1C7-C8F4A423C9F2} = {D3CBA760-1DE8-4C43-988C-EE370FA5F38A}
+		{C0CB4896-445D-40A1-B0F1-8450FDF9FB5F} = {D3CBA760-1DE8-4C43-988C-EE370FA5F38A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {649D12D7-FBAA-4592-9561-7BE3ECA67F84}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Demo\DeviceExplorerShare\DeviceExplorerShare.projitems*{03850822-b29f-486b-999d-a0635563567c}*SharedItemsImports = 5
+		Demo\DevicesShare\DevicesShare.projitems*{31d67138-33f1-47b3-a488-2f60968fe3f5}*SharedItemsImports = 4
+		Demo\DeviceExplorerMvvmShare\DeviceExplorerMvvmShare.projitems*{39dff2a1-0882-45d1-8222-c63b642f1656}*SharedItemsImports = 5
+		Demo\DevicesShare\DevicesShare.projitems*{3ff07df7-d91c-40c6-83a5-eb4934036883}*SharedItemsImports = 5
+		Demo\DeviceExplorerMvvmShare\DeviceExplorerMvvmShare.projitems*{4b888e4d-c21a-483f-a618-7f2e99d92959}*SharedItemsImports = 4
+		Src\ExplorerShare\ExplorerShare.projitems*{5d3565b1-9a81-43bf-9e87-d3b1c06bf52b}*SharedItemsImports = 13
+		Demo\DeviceExplorerShare\DeviceExplorerShare.projitems*{9ecbf37d-3257-4dba-a80e-0fa753467417}*SharedItemsImports = 13
+		Src\ExplorerShare\ExplorerShare.projitems*{a1c06fec-5889-4933-a9d0-8d6946545c51}*SharedItemsImports = 5
+		Src\ExplorerShare\ExplorerShare.projitems*{c0cb4896-445d-40a1-b0f1-8450fdf9fb5f}*SharedItemsImports = 4
+		Demo\DeviceExplorerMvvmShare\DeviceExplorerMvvmShare.projitems*{d1f95152-c333-4266-8913-a7e694c47360}*SharedItemsImports = 13
+		Demo\DeviceExplorerShare\DeviceExplorerShare.projitems*{d57a2407-a1c1-402f-ac52-b7054a4361b2}*SharedItemsImports = 4
+		Src\ExplorerShare\ExplorerShare.projitems*{dc1e0c26-52ed-4602-b1c7-c8f4a423c9f2}*SharedItemsImports = 5
+		Src\ExplorerShare\ExplorerShare.projitems*{e79e41ee-1de1-42f7-a80c-0f3d0e668617}*SharedItemsImports = 5
+		Demo\DevicesShare\DevicesShare.projitems*{f35adab3-f2f8-4123-835d-cb007424969d}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
