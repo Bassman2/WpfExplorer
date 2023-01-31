@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f35adab3-f2f8-4123-835d-cb007424969d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DevicesShare</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Adb\AdbClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adb\AdbDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adb\AdbEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeviceFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeviceIcons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeviceMemoryInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeviceType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\UnixPath.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mtp\MtpClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mtp\MtpDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mtp\MtpEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Terminal\TerminalClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Terminal\TerminalDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Terminal\TerminalEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowsClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowsDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowsEntry.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Android.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Device.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\File.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Folder.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Link.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Terminal.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)adb.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)AdbWinApi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)AdbWinUsbApi.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

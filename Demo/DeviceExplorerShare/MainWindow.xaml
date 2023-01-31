@@ -1,0 +1,73 @@
+﻿<UsbMonitorWindow x:Class="DeviceExplorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeviceExplorer"
+        mc:Ignorable="d"
+        Title="Device Explorer" Height="800" Width="1400" Icon="/DeviceExplorer;component/cellphone.ico" >
+    <Window.Resources>
+        <ContextMenu x:Key="itemContextMenu" Opened="OnItemContextOpened" >
+            <MenuItem Header="Delete" Click="OnDelete" IsEnabled="{Binding CanDelete}" />
+            <MenuItem Header="Rename" Click="OnRename" IsEnabled="{Binding CanRename}" />
+        </ContextMenu>
+        <ContextMenu x:Key="listContextMenu" Opened="OnListContextOpened" >
+            <MenuItem Header="New Folder" Click="OnCreateFolder" IsEnabled="{Binding CanCreateFolder}" />
+            <MenuItem Header="New Link" Click="OnCreateLink" IsEnabled="{Binding CanCreateLink}" />
+        </ContextMenu>
+    </Window.Resources>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar >
+                <ComboBox x:Name="clientsComboBox" Width="120" SelectionChanged="OnClientSelectionChanged" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                        <Grid ToolTip="{Binding Description}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Icon}" Width="14" Height="14" />
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" />
+                        </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Separator/>
+                <ComboBox x:Name="devicesComboBox" DisplayMemberPath="Name"  Width="300" SelectionChanged="OnDeviceSelectionChanged" />
+                <Separator/>
+                <Button Click="OnRefresh" >
+                    <Image Source="/DeviceExplorer;component/Images/Refresh.png" Width="16" Height="16"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0" x:Name="statusBarItem" />
+        </StatusBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" x:Name="pathTextBox" Margin="3"
+                Text="{Binding ElementName=explorer, Path=SelectedPath, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                local:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" />
+            <Explorer Grid.Row="1" x:Name="explorer" Margin="3,0,3,0"
+                ItemContextMenu="{StaticResource itemContextMenu}"
+                ListContextMenu="{StaticResource listContextMenu}" />
+        </Grid>
+    </DockPanel>
+</UsbMonitorWindow>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Devices</AssemblyName>
+    <RootNamespace>Devices</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\DevicesShare\DevicesShare.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\Explorer50\Explorer50.csproj" />
+  </ItemGroup>
+
+</Project>

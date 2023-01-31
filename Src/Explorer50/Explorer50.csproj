@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Explorer</AssemblyName>
+    <RootNamespace>ExplorerCtrl</RootNamespace>
+    <Copyright>Copyright © 2016 - 2021 Ralf Beckers</Copyright>
+    <Version>2.0.0</Version>
+    <Authors>Ralf Beckers</Authors>
+    <Description>Explorer WPF Control</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Bassman2/WpfExplorer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Bassman2/WpfExplorer</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Bassman.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Explorer.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <Import Project="..\ExplorerShare\ExplorerShare.projitems" Label="Shared" />
+
+</Project>

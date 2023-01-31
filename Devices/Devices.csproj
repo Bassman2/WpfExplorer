@@ -71,12 +71,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Explorer\Explorer.csproj">
-      <Project>{03fb5d97-71e4-4304-b52f-6836605398b5}</Project>
-      <Name>Explorer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="adb.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

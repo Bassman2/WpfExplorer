@@ -146,10 +146,6 @@
       <Project>{906b287e-449c-4004-9987-b1028336ff6b}</Project>
       <Name>Devices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Explorer\Explorer.csproj">
-      <Project>{03fb5d97-71e4-4304-b52f-6836605398b5}</Project>
-      <Name>Explorer</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="cellphone.ico" />

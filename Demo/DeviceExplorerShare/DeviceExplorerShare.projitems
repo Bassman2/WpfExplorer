@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>9ecbf37d-3257-4dba-a80e-0fa753467417</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DeviceExplorerShare</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="$(MSBuildThisFileDirectory)cellphone.ico" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Check.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Default.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Delete.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Device.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\File.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Folder.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Folder2.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Graph.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Link.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\MTP.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Properties.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Refresh.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Shell.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Studio.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Terminal.png" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\Windows.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)InputBindingsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

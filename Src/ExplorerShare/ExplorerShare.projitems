@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5d3565b1-9a81-43bf-9e87-d3b1c06bf52b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ExplorerShare</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AnimationImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToShortStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\DebugConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\ItemToSizeStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Explorer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerItemType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IExplorerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\DelegateCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\Dummy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\FileDescriptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\VirtualFileDataObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RefreshEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="$(MSBuildThisFileDirectory)Images\FileCopy.gif" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\FileDelete.gif" />
+    <Resource Include="$(MSBuildThisFileDirectory)Images\FileMove.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Internal\ProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>
